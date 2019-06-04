@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#div1{
+			width: 200px;
+			height: 400px;
+			background: #ff0000;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1" style="width: 300px">111</div>
+
+<script type="text/javascript">
+	//var mun=document.documentElement.style;
+	//console.log(mun);
+	//多参求和
+	/*function sum(){
+		var result=0;
+		for(var i=0;i<arguments.length;i++){
+			result+=arguments[i];
+			console.log(arguments[i]);
+		}
+		return result;
+	}
+	console.log(sum(1,2,3,4,5,6,7,8,9,10));*/
+//取行间样式
+	/*function css(){
+		if(arguments.length==2){
+			//可以取行间样式或设置行间样式,带单位
+			//对于非行内样式可以设置不可以获取
+			console.log(div1.style['width']);
+			console.log(div1.style.width');
+			return arguments[0].style[arguments[1]];
+		}
+		else{
+			return arguments[0].style[arguments[1]]=arguments[2];
+		}
+	}
+	window.onload=function(){
+		var div1 = document.getElementById('div1');
+		console.log(css(div1,'width'));
+		console.log(css(div1,'color','green'));
+		console.log(div1.style.width);
+	};*/
+
+	//取非行间样式 带单位，只能取不能设置。style.width可以设置
+	window.onload=function(){
+		var div1 = document.getElementById('div1');
+		//currentStyle只兼容IE,但实验的都报错
+		//console.log(div1.currentStyle);
+		//getComputedStyle Chrom FF 行内行外样式都能取，取优先级最高的。
+		//console.log(getComputedStyle(div1,false).height);
+		//无法取复合样式如background
+		getStyle(div1,'width');
+		console.log(div1.getAttribute('style'));
+		
+	};
+function getStyle(ele,styleName){
+	if(ele.currentStyle){
+		//如果参数表示，只能用方括号[]，如果是实际的属性名如width，display，既可以用方括号也可以用点。
+		console.log(ele.currentStyle[styleName]);
+	}
+	else{
+		//getComputedStyle(ele,null)[styleName]='100px';错误
+
+		console.log(getComputedStyle(ele,null)[styleName]);
+
+	}
+}
+/*（1）.offsetwidth属性返回值涵盖元素的width+border+padding。
+（2）.style.width属性返回值仅包含元素的width属性值。
+（3）.offsetwidth属性返回值是数字，不带单位，style.width返回值带有单位。*/
+</script>
+</body>
+</html>

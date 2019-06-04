@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//创建对象 一个一个的创建
+	/*var obj = new Object();
+	obj.name = 'Jack';
+	obj.age = 14;
+	obj.run = function(){
+		console.log(this.name+' '+this.age+"运行...");
+	};
+	obj.run();*/
+
+	//创建对象的工厂模式
+	function CreateObject(name,age){
+		var obj = new Object();
+		obj.name = name;
+		obj.age = age;
+		obj.run = function(){
+			console.log(this.name+' '+this.age+"运行...");
+		};
+		return obj;
+	}
+	function CreateObject2(name,age){
+		var obj = new Object();
+		obj.name = name;
+		obj.age = age;
+		obj.run = function(){
+			console.log(this.name+' '+this.age+"运行...");
+		};
+		return obj;
+	}
+	var box1 = CreateObject('Lee',15);
+	box1.run();
+	var box2 = CreateObject2('Jack',15);
+	box2.run();
+	console.log(typeof box1);
+	console.log(typeof box2); //都是Object对象，区分不出来谁是谁的对象
+	/******************************************/
+	//寄生构造函数，工厂模式+构造函数
+	var girl1 = new CreateObject("li",12);
+	var girl2 = new CreateObject("nana",18);
+	girl1.run();
+	girl2.run(); 
+	/*****************************************/
+	//构造函数的方式创建对象 优点：1.解决了重复实例化，2.解决了对象识别问题
+	/*	与工厂模式的不同
+		1.构造函数没有new Object，但在后台会自动var obj = new Object;
+		2.this就相当于obj
+		3.构造函数不需要返回对象引用，它是自动返回
+		规范：
+		构造函数也是函数，函数名第一个字母必须大写。
+		必须new构造函数名，在创建对象。
+	*/
+/*
+	function Box(name,age){
+		this.name = name;		//实例属性
+		this.age = age;
+		this.run = function(){   //实例方法
+			console.log(this.name+' '+this.age+"运行...");
+		};
+	}
+	var Box1 = new Box('Lee',100);
+	var Box2 = new Box("Lee",100);
+	console.log(Box1 instanceof Object);
+	console.log(Box1 instanceof Box);  //解决了对象识别问题
+	//name在做全局变量时有点问题
+	Box1.run();
+	console.log(Box1.name==Box2.name);
+	console.log(Box1.age==Box2.age);
+	console.log(Box1.run()==Box2.run());  //构造函数内的方法的值是相等的
+	console.log(Box1.run==Box2.run);	//引用地址不同，浪费资源
+*/
+	function Box(name,age){
+		this.name = name;
+		this.age = age;
+		this.run = run;
+	}
+	//通过构造函数外面绑定同一个函数的方法来保证引用地址的一致性，但这种做法没什么必要，加深学习了解。应该把它封装起来形成一个整体。
+	function run(){
+		console.log(this.name+' '+this.age+"运行...");
+	}
+	var Box1 = new Box('Lee',100);
+	var Box2 = new Box("Lee",100);
+	
+	console.log(Box1.run()==Box2.run());  //构造函数内的方法的值是相等的
+	console.log(Box1.run==Box2.run);	//引用地址相同
+
+	var Box3 = new Object();  
+	Box.call(Box3,'Ann',20); //对象冒充，Box3拷贝Box的内容
+	Box3.run();
+</script>
+</html>

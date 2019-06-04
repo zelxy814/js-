@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//工具方法，可以自己封装好拿来用。
+
+
+
+	//准确输出参数的类型
+	// function typeNum(type){
+
+	// 	var toStr = Object.prototype.toString;
+	// 	var arr = '[object Array]',
+	// 		obj = '[object Object]',
+	// 		num = '[object Number]',
+	// 		str = '[object String]',
+	// 		nu = '[object Null]';
+	// 	var typeName = typeof type;
+	// 	if(typeName == "object"){
+	// 		//Object Array new Number
+	// 		if(toStr.call(type) == arr){
+	// 			typeName = 'array';
+	// 		}else if(toStr.call(type) == obj){
+	// 			typeName = 'object';
+	// 		}else if(toStr.call(type) == num){
+	// 			typeName = 'number object';
+	// 		}else if(toStr.call(type) == str){
+	// 			typeName = 'string object';
+	// 		}else if(toStr.call(type) == nu){
+	// 			typeName = 'null object';
+	// 		}
+	// 	}
+	// 	return typeName;
+	// }
+
+
+
+
+
+	function typeNum(type){
+
+		var toStr = Object.prototype.toString;
+		var typeName = typeof type;
+		var template = {
+			'[object Array]':'array',
+			'[object Object]':'object',
+			'[object String]':'string object',
+			'[object Number]':'number object',
+			'[object Null]':'null'
+		};	
+		if(typeName == "object"){
+			var str = toStr.call(type);
+		
+			typeName = template[str];
+		}
+		return typeName;
+	}
+	console.log(typeNum(true));
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<script>
+		var arr1=new Array(1,2,3,4,5,6);
+		var arr2=new Array(12,33,5);
+		Array.prototype.sum=function()	//相当于css中的class，给一组元素添加样式
+		//arr1.sum=function() //相当于行间样式，给单个元素添加样式
+		{
+			console.log('123');
+		};
+		arr1.sum();
+		arr2.sum();
+		/*	Array  类		模子
+			arr1 	对象		产品
+			prototype原型是往类上加东西
+			*/
+
+	</script>
+</body>
+</html>

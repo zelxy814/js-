@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//原型方法
+	/*function Box(name,age){
+		Box.prototype.name = name;		//原型属性
+		Box.prototype.age = age;
+		Box.prototype.run = function(){   //原型方法
+			console.log(this.name+' '+this.age+"运行...");
+		};
+	}
+	//对象和方法都是使用引用地址的方式
+	//如果是实例方法，不同的实例对象，它们的方法地址是不同的。
+	//如果是原型方法，那么它们的地址是共享的。
+	var Box1 = new Box('ee',100);
+	var Box2 = new Box("Lee",100);
+	console.log(Box1.name==Box2.name);  //true
+	console.log(Box1.name);
+	console.log(Box2.name);   //地址共享
+	console.log(Box1.run==Box2.run);
+*/
+	//原型缺点，不能传参，内容共享;
+	/*function Boy(){};
+	//每一个对象都有一个prototype对象
+	Boy.prototype={
+		name: 'boy',
+		age: 15,
+		family: [1,2,3,4]
+	};
+	var boy1 = new Boy();
+	boy1.family.push('a');
+	var boy2 = new Boy();
+	console.log(boy2.family);*/
+
+	function Boy(name,age){
+		this.name=name;
+		this.age=age;
+		Boy.prototype.sex = 'man';
+		console.log("abc");  //每次实例化都初始化，浪费资源
+		//原型初始化，只要在第一次初始化就可以了，没必要每次构造函数实例化的时候都初始化。
+		if(typeof this.run!='function'){
+			console.log(123);
+			Boy.prototype.run=function(){
+				console.log(this.name+this.age);
+			};
+		}
+
+	};
+
+
+	var boy1 = new Boy('Lee',15);
+	var boy2 = new Boy('Ann',30);
+	boy1.run();
+	boy2.run();
+	boy1.run();
+</script>
+</html>

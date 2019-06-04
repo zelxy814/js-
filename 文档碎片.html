@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var ull= document.getElementById('ull');
+			//创建文档碎片，对低性能浏览器有提高，快消失了
+			var oFrag=document.createDocumentFragment();
+			for(var i=0;i<1000;i++){
+				var oLi=document.createElement('li');
+				oFrag.appendChild(oLi);
+			}
+			ull.appendChild(oFrag);
+		};
+	</script>
+</head>
+<body>
+	<ul id="ull">
+	</ul>
+</body>
+</html>

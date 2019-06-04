@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div{
+			width: 80px;
+			height: 80px;
+			background: #ccc;
+			position: absolute;
+			left:0;
+			top: 0;
+
+		}
+		.box{
+			border: dashed 1px #000;
+			position: absolute;
+			left: 0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="div"></div>
+	<script>
+		var div=document.getElementById('div');
+		var posX=0,posY=0;
+		div.onmousedown=function(ev){
+			var oEvent=event||ev;
+				/*创建一个虚线框*/
+			var oBox=document.createElement('div');
+			oBox.className='box';
+			oBox.style.width=div.offsetWidth-2+'px';
+			oBox.style.height=div.offsetHeight-2+'px';
+			document.body.appendChild(oBox);
+			oBox.style.left=div.offsetLeft+'px';
+			oBox.style.top=div.offsetTop+'px';
+			//鼠标与div的左上角距离
+			posX=oEvent.clientX-div.offsetLeft;
+			posY=oEvent.clientY-div.offsetTop;
+
+			document.onmousemove=function(ev){
+				var oEvent=ev||window.event;
+				var left=oEvent.clientX-posX,
+				top=oEvent.clientY-posY;
+				if(left<0){
+					left=0;
+				}
+				if(top<0){
+					top=0;
+				}
+				if(left>document.documentElement.clientWidth-div.offsetWidth){
+					left=document.documentElement.clientWidth-div.offsetWidth
+				}
+				if(top>document.documentElement.clientHeight-div.offsetHeight){
+					top=document.documentElement.clientHeight-div.offsetHeight;
+				}
+				//拖动虚线框
+				oBox.style.left=left+'px';
+				oBox.style.top=top+'px';
+			};
+			document.onmouseup=function up(){
+				//松手时，虚线框消失
+				
+				div.style.left=oBox.offsetLeft+'px';
+				div.style.top=oBox.offsetTop+'px';
+				document.body.removeChild(oBox);
+				document.onmouseup=null;
+				document.onmousemove=null;
+			};
+			//在火狐下拖拽空div时。第二次会出现阴影。所以屏蔽掉默认属性
+			return false;
+		};
+		
+		
+		
+	</script>
+</body>
+</html>

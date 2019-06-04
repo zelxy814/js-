@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<ul id="ul1">
+	<li>34</li>
+	<li>78</li>
+	<li>12</li>
+	<li>4</li>
+	<li>20</li>
+</ul>
+<button id='btn'>排序</button>
+<script>
+	var ul1=document.getElementById('ul1'),
+		/*aLi只是元素集合，除了长度和方括号外，不具有数组属性和方法*/
+		aLi=ul1.getElementsByTagName('li'),
+		arr=[];
+		/*arr是放着li元素对象的数组*/
+		for(var i=0;i<aLi.length;i++){
+			arr[i]=aLi[i];
+		}
+		/*arr放的是排好序的li对象,sort函数中的参数是数组中元素的类型*/
+		arr.sort(function(li1,li2){
+			var n1=li1.innerHTML,
+				n2=li2.innerHTML;
+				return n1-n2;
+		});
+		btn.onclick=function(){
+			for(var j=0;j<arr.length;j++){
+				console.log(arr[j].innerHTML);
+				ul1.appendChild(arr[j]);
+				alert(arr[j].innerHTML);
+			}
+		}
+		
+		
+</script>	
+</body>
+</html>

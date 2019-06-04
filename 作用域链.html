@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*
+	1.函数创建时，生成一个JS内部的隐式属性。
+	2.作用域链，函数存储作用域链的容器
+	AO/GO
+	AO.函数的执行期上下文，即函数内部的预解析
+	GO.全局的执行期上下文
+	函数执行完以后，AO是要销毁的
+
+*/
+	function a(){
+		function b(){
+			var b = 2;
+		}
+		var a = 1;
+		b();
+	}
+	var c = 3;
+	a();
+</script>
+</html>

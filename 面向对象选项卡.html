@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1 input{background: white;}
+		#div1 input.active{background: #ff0;}
+		#div1 div{width: 200px; height: 200px; background: #CCC;display: none;}
+	</style>
+	<script>
+		window.onload=function(){
+			new TabSwich('div1');
+		};
+		//面向对象，函数没有嵌套
+		// var aBtn=null;
+		// var aDiv=null;
+		function TabSwich(id){
+			var _this=this;
+			var oDiv=document.getElementById(id);
+			this.aBtn=oDiv.getElementsByTagName('input');
+			this.aDiv=oDiv.getElementsByTagName('div');
+			for(var i=0;i<this.aBtn.length; i++){
+				this.aBtn[i].index=i;
+				 this.aBtn[i].onclick=function(){   //this.fnClick;
+					//当前方法属于谁，this是谁,this是this.aBtn[i]
+					_this.fnClick(this);
+				};
+
+				
+
+			}
+		};
+		TabSwich.prototype.fnClick=function(oBtn){
+			
+					for(var j=0;j<this.aBtn.length;j++){
+						this.aBtn[j].className='';
+						this.aDiv[j].style.display='none';
+					}
+					oBtn.className='active';
+					this.aDiv[oBtn.index].style.display='block';
+
+				};
+	</script>
+</head>
+<body>
+<div id="div1">
+	<input class="active" type="button" value="aaa">
+	<input type="button" value="bbb">
+	<input type="button" value="ccc">
+	<div>aaa</div>
+	<div>dfsadf</div>
+	<div>erwqerwe</div>
+</div>
+</body>
+</html>

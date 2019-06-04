@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{list-style: none;}
+		#div1{
+			width: 80px;
+			background: #ccc;
+			position: absolute;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
+	</div>
+	<script>
+		//oncontextmenu右键菜单，环境菜单，默认行为
+		/*document.oncontextmenu=function(){
+			//阻止默认事件
+			return false;
+		};*/
+		document.oncontextmenu=function(ev){
+			var oEvent=ev||window.event;
+			var div1=document.getElementById('div1'),
+				scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft,
+				scrollTop=document.documentElement.scrollTop||document.body.scrollTop,
+				left=oEvent.clientX+scrollLeft,
+				top=oEvent.clientY+scrollTop;
+			div1.style.left=left+'px';
+			div1.style.top=top+'px';
+			div1.style.display='block';
+			return false;
+		};
+		document.onclick=function(){
+			var  div1=document.getElementById('div1');
+			div1.style.display='none';
+		};
+	</script>
+</body>
+</html>

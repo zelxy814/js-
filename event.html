@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			border: 1px red solid;
+			height: 1000px;
+		}
+		html{
+			border: 1px green solid;
+		}
+	</style>
+</head>
+<!--body里面没内容是撑不起来的，没有高-->
+<body>
+	<script>
+		//document可以触发整个页面上的事件，它包含整个网页甚至文档头声明。
+		//html和body的高不确定，
+		document.onclick=function(ev){
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop,
+				scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+				console.log(scrollTop);
+				console.log(event.clientY);
+			//IE,IE 中可以直接使用event 对象，而FF 中则不可以
+			console.log("("+(scrollLeft+event.clientX)+','+(scrollTop+event.clientY)+")");
+			//firefox
+			console.log("("+(scrollLeft+ev.clientX)+','+(scrollTop+ev.clientY)+")");
+			//兼容的
+			var oEvent=ev||event;
+			console.log("("+(scrollLeft+oEvent.clientX)+','+(scrollTop+oEvent.clientY)+")");
+		}
+	</script>F:/前端/Sublime Text3/JavaScript/js高级/event.html
+</body>
+</html>

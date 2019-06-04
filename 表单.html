@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var form=document.getElementById('form');
+			form.onsubmit=function(){
+				console.log('abc');
+			};
+		};
+	</script>
+</head>
+<body>
+	<form action="http://www.baidu.com" id="form">
+		<label for="user">用户名：</label>
+		<input type="text" name="" id="user" autocomplete="off"><br>
+		<label for="password">密码：</label>
+		<input type="password" name="" id="password"><br>
+		<input type="submit">
+		<input type="reset">
+	</form>
+</body>
+</html>

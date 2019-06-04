@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#parent{
+			width: 400px;
+			height: 20px;
+			background: #ccc;
+			position: relative;
+			margin: 50px auto;
+		}
+		#div1{
+			width: 20px;
+			height: 20px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#div2{
+			width: 300px;
+			height: 400px;
+			border: 1px solid #000;
+			background: green;
+			/*opacity: 0;*/
+			position: relative;
+			overflow: hidden;
+		}
+		#div3{
+			position: absolute;
+			top:0;
+		}
+
+	</style>
+	<script>
+		window.onload=function(){
+			var div1=document.getElementById('div1'),
+				div2=document.getElementById('div2'),
+				div3=document.getElementById('div3'),
+				parent=document.getElementById('parent'),
+				posX=0,posY=0;
+				//拖拽
+				div1.onmousedown=function(ev){
+					var oEvent=ev||event;
+					//计算点击的位置
+					posX=oEvent.clientX-div1.offsetLeft;
+					//posY=oEvent.clientY-div1.offsetTop;
+					document.onmousemove=function(ev){
+						var oEvent=ev||event;
+						var left=oEvent.clientX-posX;
+						if(left<0){
+							left=0;
+						}
+						if(left>parent.offsetWidth-div1.offsetWidth){
+							left=parent.offsetWidth-div1.offsetWidth;
+						}
+						div1.style.left=left+'px';
+						//滚动条的值
+						var scale=left/(parent.offsetWidth-div1.offsetWidth);
+						//div2.style.opacity=scale;
+						div3.style.top=-scale*(div3.offsetHeight-div2.offsetHeight)+'px';
+						document.title=(scale);
+						//div1.style.top=oEvent.clientY-posY+'px';
+					};
+					document.onmouseup=function(){
+						this.onmousemove=null;
+						this.onmouseup=null;
+						if(div1.releaseCapture){
+							div1.releaseCapture();
+						}
+					};
+					if(div1.getCapture){
+						div1.getCapture();
+					}
+					return false
+				};
+		 };
+		//F:/前端/Sublime Text3/JavaScript/js高级/自定义滚动条.html
+	</script>
+</head>
+<body>
+<div id="parent">
+	<div id="div1"></div>
+</div>
+<div id="div2">
+	<div id="div3">
+		形散神聚：”形散“既指题材广泛、写法多样，又指结构自由、不拘一格；“神聚”既指中心集中，又指有贯穿全文的线索。散文写人写事都只是表面现象，从根本上说写的是情感体验。情感体验就是“不散的神”，而人与事则是“散”的可有可无、可多可少的“形”。
+“形散”主要是说散文取材十分广泛自由，不受时间和空间的限制；表现手法不拘一格：可以叙述事件的发展，可以描写人物形象，可以托物抒情，可以发表议论，而且作者可以根据内容需要自由调整、随意变化。“神不散”主要是从散文的立意方面说的，即散文所要表达的主题必须明确而集中，无论散文的内容多么广泛，表现手法多么灵活，无不为更好的表达主题服务。
+意境深邃：注重表现作者的生活感受，抒情性强，情感真挚。
+作者借助想象与联想，由此及彼，由浅入深，由实而虚的依次写来，可以融情于景、寄情于事、寓情于物、托物言志，表达作者的真情实感，实现物我的统一，展现出更深远的思想，使读者领会更深的道理。
+语言优美：所谓优美，就是指散文的语言清新明丽(也美丽)，生动活泼，富于音乐感，行文如涓涓流水，叮咚有声，如娓娓而谈，情真意切。所谓凝练，是说散文的语言简洁质朴，自然流畅，寥寥数语就可以描绘出生动的形象，勾勒出动人的场景，显示出深远的意境。散文力求写景如在眼前，写情沁人心脾。
+散文素有“美文”之称，它除了有精神的见解、优美的意境外，还有清新隽永、质朴无华的文采。经常读一些好的散文，不仅可以丰富知识、开阔眼界，培养高尚的思想情操，还可以从中学习选材立意、谋篇布局和遣词造句的技巧，提高自己的语言表达能力。
+语言优美：所谓优美，就是指散文的语言清新明丽(也美丽)，生动活泼，富于音乐感，行文如涓涓流水，叮咚有声，如娓娓而谈，情真意切。所谓凝练，是说散文的语言简洁质朴，自然流畅，寥寥数语就可以描绘出生动的形象，勾勒出动人的场景，显示出深远的意境。散文力求写景如在眼前，写情沁人心脾。
+散文素有“美文”之称，它除了有精神的见解、优美的意境外，还有清新隽永、质朴无华的文采。经常读一些好的散文，不仅可以丰富知识、开阔眼界，培养高尚的思想情操，还可以从中学习选材立意、谋篇布局和遣词造句的技巧，提高自己的语言表达能力。
+语言优美：所谓优美，就是指散文的语言清新明丽(也美丽)，生动活泼，富于音乐感，行文如涓涓流水，叮咚有声，如娓娓而谈，情真意切。所谓凝练，是说散文的语言简洁质朴，自然流畅，寥寥数语就可以描绘出生动的形象，勾勒出动人的场景，显示出深远的意境。散文力求写景如在眼前，写情沁人心脾。
+散文素有“美文”之称，它除了有精神的见解、优美的意境外，还有清新隽永、质朴无华的文采。经常读一些好的散文，不仅可以丰富知识、开阔眼界，培养高尚的思想情操，还可以从中学习选材立意、谋篇布局和遣词造句的技巧，提高自己的语言表达能力。
+语言优美：所谓优美，就是指散文的语言清新明丽(也美丽)，生动活泼，富于音乐感，行文如涓涓流水，叮咚有声，如娓娓而谈，情真意切。所谓凝练，是说散文的语言简洁质朴，自然流畅，寥寥数语就可以描绘出生动的形象，勾勒出动人的场景，显示出深远的意境。散文力求写景如在眼前，写情沁人心脾。
+散文素有“美文”之称，它除了有精神的见解、优美的意境外，还有清新隽永、质朴无华的文采。经常读一些好的散文，不仅可以丰富知识、开阔眼界，培养高尚的思想情操，还可以从中学习选材立意、谋篇布局和遣词造句的技巧，提高自己的语言表达能力。
+	</div>
+</div>
+</body>
+</html>

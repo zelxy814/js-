@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+	/*
+	var x; var y;
+	function add(x){return n = n + 1;}
+	function add(x){return n = n + 3;}
+	x = 1; y = z = 0;
+	y = add(x);
+	z = add(x);
+	*/
+	var x = 1; y = z = 0;
+	function add(n){
+		return n = n + 1;
+	}
+	y = add(x);
+	function add(n){
+		return n = n + 3;
+	}
+	z = add(x);
+
+	(function test(x){
+		console.log(arguments);
+		return x;
+	})(1,2,3,4,5);
+
+	function foo(){
+		bar.apply(null,arguments);
+	}
+	function bar(){
+		console.log(arguments);
+	}
+	foo(1,2,3,4,5);
+	/*
+	typeof 可以识别的类型，没有null,null归为object。
+	undefined boolean object string function number
+	*/
+	function bb(x,y,a){
+		//arguments[2]与a有映射关系
+		arguments[2] = 10;
+		console.log(a);  //10
+	}
+	bb(1,2,3);
+
+	//逗号操作符
+	console.log((1,2));  //2
+	console.log((1,2,3));  //3
+	var f = (
+		function f(){
+			return 2;
+		},
+		function g(){
+			return "1";
+		}
+	)();
+	console.log(typeof f);
+
+	var z = 1;
+	if(function ff() {}){
+		z += typeof ff;
+	}
+	console.log(z);
+	//undefined == null  true
+	//undefined === null  false
+	function isNaN(num){
+		var ret = Number(num);
+		ret += "";
+		//NaN与NaN是不相同的,是否非数值
+		if(ret == "NaN"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	console.log(isNaN(100));
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{
+			width:200px;
+			height: 200px;
+			background: green;
+		}
+		#div2{
+			margin-left: 200px;
+			width:100px;
+			height: 100px;
+			background: red;
+		}
+		ul{
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var div1=document.getElementById('div1'),
+				div2=document.getElementById('div2'),
+				body=document.getElementsByTagName('body')[0];
+			div1.addEventListener('click',div1ClickTrue,true);
+			div2.addEventListener('click',div2ClickTrue,true);
+			function div1ClickTrue(){
+				console.log('div1捕获阶段 true');
+			}
+			function div2ClickTrue(event){
+				event.stopPropagation();
+				console.log('div2捕获阶段 true');
+			}
+			div1.addEventListener('click',div1ClickFalse,false);
+			div2.addEventListener('click',div2ClickFalse,false);
+			function div1ClickFalse(){
+				console.log('div1冒泡阶段 false');
+			}
+			function div2ClickFalse(event){
+				//阻止冒泡阶段,不让它往上冒泡了。
+				//event.stopPropagation();
+				console.log('div2冒泡阶段 false');
+			}
+			body.addEventListener('click',bodyClickTrue,true);
+			body.addEventListener('click',bodyClickFalse,false);
+			function bodyClickTrue(){
+				console.log('body捕获阶段 true');
+			}
+			function bodyClickFalse(){
+				console.log('body冒泡阶段 false');
+			}
+			//事件代理,为其父元素添加事件
+			var ul1=document.getElementsByTagName('ul')[0];
+			function getTarget(e){
+				//event兼容写法
+				var oEvent=e||event;
+				//获取目标元素兼容写法
+				return oEvent.target||oEvent.srcElement;
+
+			}
+			ul1.addEventListener('click',function(e){
+				var oEvent=e||event;
+				var target=getTarget(oEvent);
+				 if(target.tagName.toLowerCase()=='li'){
+					console.log(target.innerHTML);
+				 }
+			});
+
+		};
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div id='div2'></div>
+	</div>
+	<ul>
+		<li>li1</li>
+		<li>li2</li>
+		<li>li3</li>
+		<li>li4</li>
+		<li>li5</li>
+	</ul>
+</body>
+</html>

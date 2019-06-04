@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//类数组，看起来像数组，其实不是数组，有length属性
+	//类数组必须有length属性
+	obj = {
+		"2" : 'a',
+		"3" : 'b',
+		"length":2,
+		"push": Array.prototype.push
+	}
+
+	obj.push("c");
+	obj.push("d");
+	console.log(obj);
+	/*
+		obj = {
+		"2" : 'c',
+		"3" : 'd',
+		"length":2,
+		"push": Array.prototype.push
+		}
+		同名替换
+	*/
+
+
+	// push的原理
+	// Array.prototype.push=function(target){
+	// 	this[this.length] = target;
+	// 	this.length ++;
+	// }
+
+	//类数组并不是所有的数组方法都能用，除非自己填。
+ 	var obj1 = {
+ 		"0": 'a',
+ 		"1": 'b',
+ 		"2": 'c',
+ 		length: 3,
+ 		name: "abc",
+ 		age: 123,
+ 		push :Array.prototype.push,
+ 		//splice使obj1外表上完全像数组了
+ 		splice:Array.prototype.splice
+ 	}
+
+	function show(){
+		//类数组
+		console.log(arguments.length);
+	}
+	show(1,2,3,4,5,6);
+	var arr = [1,2,3,4,5,6];
+	console.log(arr);
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//立即执行完就释放，一般用来初始化功能的函数
+	(function(){
+		console.log(arguments.callee);
+	}());
+	(function (){}());  //W3C 建议使用这一种
+	(function (){})();
+/**************************************************************/
+	// 函数定义分两种,函数声明和函数表达式
+	//只有表达式才能被执行符号执行，有运算符叫表达式，123也叫表达式
+	//函数声明不是表达式，在后面加括号，报错
+	function test(){
+		var a = 123;
+	}
+	test();     //test是表达式
+
+//被执行函数执行的表达式就会忽略函数名
+	 + function test1(){
+		console.log("test1");
+		console.log(test1);
+	}();
+	console.log(test1);
+	//括号也是表达式
+	(function test2(){
+		console.log("test2");
+	})();
+	(function(){}());
+	//console.log(test2) undefined
+	var test3 = function(){
+		console.log("a");
+	}();
+
+	//面试题
+	//系统认为，把参数和函数分开，单独一个表达式，函数不执行。
+	function test4(a,b,c,d){
+		console.log(a + b + c + d);
+	}(1,2,3,4);
+</script>
+</html>

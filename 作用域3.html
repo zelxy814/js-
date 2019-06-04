@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// 	function mytest( ){                     
+//            var test=10;
+//           return function( ){ 
+//                  test++;
+//                console.log(test);
+//       } 
+// }
+// var atest = mytest( ); //引用返回的函数
+// atest( );  // 11
+// atest( ); //  12
+
+
+function a(){
+	function b(){
+		var bbb = 234;
+		document.write(aaa);
+	}
+	var aaa = 123;
+	return b;
+}
+	var glob = 100;
+	var demo = a();
+	demo();
+
+	function test(){
+		var num = 100;
+		function a(){   //a AO-->test AO-->GO
+			num ++;
+			console.log(num);
+		}
+		function b(){		
+			num --;
+			console.log(num);
+		}
+		//a(),b()中的num都是指的一个
+		return [a,b];
+	}
+	var arr = test();
+	arr[0]();
+	arr[1]();
+</script>
+</html>

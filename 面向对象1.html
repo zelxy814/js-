@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*function createPerson(name,qq){      //构造函数
+			var obj=new Object();
+			obj.name=name;
+			obj.qq=qq;
+			obj.showName=function(){
+				console.log(this.name);
+			};
+			obj.showQQ=function(){
+				console.log(this.qq);
+			};
+			return obj;
+		}
+		var obj=createPerson('blue','758u');
+		obj.showName();
+		obj.showQQ();*/
+
+		function show(){
+			console.log(this);
+		}
+		show(); //window对象,在全局方法中，this是指向window的
+		new show();//加上new就变成object对象
+		//创建系统对象
+		function createPerson(name,qq){   
+		//系统偷偷替咱们做   
+			//var this=new Object();
+			this.name=name;
+			this.qq=qq;
+			this.showName=function(){
+				console.log(this.name);
+			};
+			this.showQQ=function(){
+				console.log(this.qq);
+			};
+			//系统偷偷替咱们做 
+			//return this;
+		}
+		var obj1= new createPerson('bluea','758u');
+		var obj2=new createPerson('张三','y83147875');
+		obj1.showName();
+		obj1.showQQ();
+		//false 
+		console.log(obj1.showName==obj2.showName);
+
+/*--------------------------------------------------------*/
+		//创建构造函数
+		function CreatePer(name,qq){   
+			this.name=name;
+			this.qq=qq;
+		}
+		//构造函数加属性，原型加方法
+		CreatePer.prototype.showName=function(){
+				console.log(this.name);
+		};
+		CreatePer.prototype.showQQ=function(){
+				console.log(this.qq);
+		};
+		var obj3= new CreatePer('bluea','758u');
+		var obj4=new CreatePer('张三','y83147875');
+		obj3.showName();
+		obj4.showQQ();
+		//true 因为他们都是来自原型上的
+		console.log(obj3.showName==obj4.showName);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

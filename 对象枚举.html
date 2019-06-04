@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+	//obj.name---->obj['name']系统自动转换
+	var obj = {
+		//属性名是字符串
+		name: '张三',
+		age: 12,
+		sex: "male",
+		height: 75,
+		prop: 123,
+		//原型可以手动更改
+		__proto__: {
+			lastName: "deng"
+		}
+	};
+	for(var prop in obj){
+		//把prop当成属性了，obj.prop--->obj['prop']就会把prop当成属性，prop是字符串变量
+		//console.log(obj.prop);
+
+		// console.log(prop+" "+typeof(prop));
+		// console.log(obj[prop]);
+
+		//对象的属性 hasOwnProperty()参数属性名字符串，只访问自己的属性,系统带的不会认识
+		if(obj.hasOwnProperty(prop)){
+			console.log(obj[prop]);
+		}
+		// in 判断能不能访问这个属性
+		console.log("lastName" in obj);  //true
+
+		//A对象 是不是 B构造出来的
+		// 看A对象的原型链上 有没有 B的原型
+		// A instanceof B
+		var obj1 = {};
+		var arr = [];
+		//obj1.constructor arr.constructor
+		//obj1 instanceof Object  . arr instanceof Array
+		// Object.prototype.toString(){
+		// 	//谁调用这个函数，里面的this就指谁，里面的函数肯定要操作this的。
+		// }
+		console.log(Object.prototype.toString.call(arr));
+	}
+</script>
+</html>

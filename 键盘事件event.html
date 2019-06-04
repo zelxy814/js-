@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{
+			width: 20px;
+			height: 20px;
+			background: #f00;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<script>
+		function getPos(ev){
+			var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft,
+				scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			return {x:scrollLeft+ev.clientX,y:scrollTop+ev.clientY};
+		}
+		document.onkeydown=function(ev){
+			var oEvent=window.event||ev,
+				div1=document.getElementById('div1');
+				console.log(oEvent.keyCode);
+			if(oEvent.keyCode==37){
+				div1.style.left=(div1.offsetLeft-10)+'px';
+			}
+			else if(oEvent.keyCode==39){
+				div1.style.left=(div1.offsetLeft+10)+'px';
+			}
+			else if(oEvent.keyCode==38){
+				div1.style.top=(div1.offsetTop-10)+'px';
+			}
+			else if(oEvent.keyCode==40){
+				div1.style.top=(div1.offsetTop+10)+'px';
+			}
+
+		}
+	</script>
+</body>
+</html>

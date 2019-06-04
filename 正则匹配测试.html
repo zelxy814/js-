@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+ //var box = new RegExp('BOX'); //第一个参数是模式字符串
+ //console.log(box); //    /BOX/   弹出来的是字面量表示法   
+
+ var box = new RegExp('BOX','ig'); //第二个参数可选,模式修饰符   
+ console.log(box);   // /BOX/ig    
+ // 使用字面量的创建方法
+ var box = /BOX/ig;  
+
+ var pattern = new RegExp("BOX",'i');  // pattern = /BOX/i
+ var str = 'boxon,ebox';
+ console.log(pattern.test(str));  
+ console.log(pattern.exec(str));   
+
+ console.log(/BOX/i.test('box'));
+ var str1="This is a box !";
+ console.log(pattern.test(str1));  // str1中是否包含忽略大小写的box  
+  console.log(str.match(box));
+ console.log(str.search(box));    //只能查找到第一个，没有去全局概念
+ console.log(str.replace(box,'TOM')); 
+ var pat = /,/ig;
+ console.log(str.split(pat));  //以正则的形式拆分成数组
+</script>
+</html>

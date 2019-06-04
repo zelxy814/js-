@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#ul1{
+			background: #ff0;
+		}
+		#ul2{
+			background: #0ff;
+		}
+	</style>
+</head>
+<body>
+<ul id="ul1">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ul>	
+<button id="btn">点击</button>
+<ul id="ul2"></ul>
+<script>
+	function getId(id){
+		return document.getElementById(id);
+	}
+	var ul1=getId('ul1'),
+		ul2=getId('ul2'),
+		btn=getId('btn');
+		btn.onclick=function(){
+			var oli=ul1.children[0];
+			//appendChild();先把元素从原来的父级元素删除，然后在添加到新的父级元素。
+			//ul2.appendChild(oli);
+			ul1.appendChild(oli);
+			//ul1.removeChild(oli);
+			
+		};
+</script>
+</body>
+</html>

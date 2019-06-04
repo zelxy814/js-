@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//在预编译过程中，this指向window
+	function test(c){
+		var a = 123;
+		function b(){}
+	}
+	AO{
+		arguments : [1],
+		this : window,
+		c : 1,
+		a : undefined,
+		b : function(){}
+	}
+	test(1);
+	//当new一个函数时，函数内部  var this = Object.create(test.prototype);
+	new test(1);
+
+	var obj={
+			name: 'blue',
+			qq: '278472488',
+
+			showName: function(){
+				console.log(this.name);
+				//方法属于谁，this指谁
+			},
+			showQQ: function(){
+				console.log(this.qq);
+			}
+		};
+		obj.showName();
+		obj.showQQ();
+</script>
+</html>

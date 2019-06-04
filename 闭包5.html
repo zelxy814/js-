@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function test(){
+		var arr = [];
+		for(var i = 0; i < 10; i ++){
+			arr[i] = function(){
+				console.log(i);
+			};
+		}
+		return arr;
+	}
+	var myArr = test();
+	for(var i = 0; i < 10; i ++){
+		console.log(myArr[i]);
+		myArr[i]();
+	}
+
+	function test1(){
+		var arr = [];
+		// for(var i = 0; i < 10; i ++){
+		// 	(function(j){
+		// 		arr[j] = function(){
+		// 		console.log(j);
+		// 	};
+		// 	}(i));
+		// }
+		//相当于10次,每次都参数都不一样，在每一次中函数都等待执行，参数j 与arr[j]一样
+		(function(j){
+			arr[j] = function(){
+			console.log(j);      //0 第一个函数在找j时，找的是与它对应的立即执行里面的j
+			};
+			}(i));
+		(function(j){
+			arr[j] = function(){
+			console.log(j);      //1
+			};
+			}(i));
+		(function(j){
+			arr[j] = function(){
+			console.log(j);      //2
+			};
+			}(i));
+		// . . . . . . 
+		return arr;
+		}
+		
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload=function(){
+			var oUl= document.getElementById('oUl');
+			//IE6-8
+			//oUl.firstChild.style.background='red'; 
+			//高级浏览器
+			//oUl.firstElementChild.style.background='red';
+			if(oUl.firstElementChild){
+				oUl.firstElementChild.style.background='red'; 
+			}
+			else{
+				oUl.firstChild.style.background='red'; 
+			}
+
+			var btn1=document.getElementById('btn1'),
+				btn2= document.getElementById('btn2');
+			btn2.onclick=function(){
+				//btn1.value='12345';
+				//任何可以用点的都可以用中括号
+				//btn1['value']='12345';
+				btn1.setAttribute('value','12345');
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul id='oUl'>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<input id='btn1' type="text">
+	<input id='btn2' type="button" value='按钮'>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function getId(id){
+			return document.getElementById(id);
+		}
+		window.onload=function(){
+			var tab=getId('tab1'),
+				name=getId('name'),
+				age=getId('age'),
+				add=getId('add')
+				len=tab.tBodies[0].rows.length+1,
+				nameVal=getId('nameVal'),
+				sou=getId('sou');
+			
+			
+			function input(){
+				var otr=document.createElement('tr');
+				var oli=document.createElement('td');
+				oli.innerHTML=len++;
+				otr.appendChild(oli);
+				var oli=document.createElement('td');
+				oli.innerHTML=name.value;
+				otr.appendChild(oli);
+				var oli=document.createElement('td');
+				oli.innerHTML=age.value;
+				otr.appendChild(oli);
+				var oli=document.createElement('td');
+				oli.innerHTML='<a href="#">删除</a>';
+				otr.appendChild(oli);
+				tab.tBodies[0].appendChild(otr);
+				var aA=oli.getElementsByTagName('a')[0];
+				aA.onclick=function(){
+					console.log(11);
+					tab.tBodies[0].removeChild(this.parentNode.parentNode);
+				};
+			};
+			function sousuo(){
+				for(var i=0;i<len-1;i++){
+					var sTab=tab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase(),
+					sTxt=nameVal.value.toLowerCase();
+					tab.tBodies[0].rows[i].style.background='';
+					var arr=sTxt.split(' ');
+					for(var j=0;j<arr.length;j++){
+						if(sTab.search(arr[j])!=-1){
+						tab.tBodies[0].rows[i].style.background="#0ff";
+						}
+					}
+					
+				}
+			}
+			add.onclick=input;
+			sou.onclick=sousuo;
+			
+
+
+			
+		};
+		
+			
+	</script>
+	<style>
+		input{
+			width: 100px;
+		}
+		#tab1{
+			width: 300px;
+			text-align: center;
+		}
+		#tab1,#tab1 td{
+			border: 1px solid #333;
+		}
+	</style>
+</head>
+<body>
+	<input id="name" type="text">
+	<button>姓名</button>
+	<input id="age" type="text">
+	<button>年龄</button>
+	<button id="add">添加</button>
+	<br>
+	<input id="nameVal" type="text">
+	<button id='sou'>搜索</button>
+	<table id='tab1'>
+		<thead>
+			<td>编号</td>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>操作</td>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>20</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>22</td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>

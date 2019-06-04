@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+
+	window.name='win123';
+	document.name='doc123';
+	var s1={name:'json123'};
+	function fnName(){
+		this.name='123';
+		console.log(this.name);
+	}
+	/*call可以改变函数执行时的this指向，
+	比如A.call(B),就是A的this指向B,而不再是A*/
+	// fnName();
+	// fnName.call();
+	// fnName.call(window);
+	// fnName.call(this);
+	// fnName.call(document);
+	// fnName.call(s1);
+/*--------------------------------------------------------------------*/
+/*this继承*/
+	function A(){
+		this.abc=12;
+	}
+	A.prototype.show=function(){
+		console.log(this.abc);
+	};
+	function B(){
+		//这个this指的是new B()，而A中的this指向了这个new B()，并且A中this所携带的属性，obj=new B()对象都有。B继承了A的属性
+		A.call(this);	
+	}
+	//B.prototype=A.prototype;//如果直接赋值不是把A赋给B，是把A的地址给B,A B指向同一块地址。
+	/*-----------------------*/
+	for (var i in A.prototype){
+		B.prototype[i]=A.prototype[i];
+	}
+	/*-----------------------*/
+	B.prototype.fb=function(){
+		console.log('abc');
+	};
+	
+	var objB=new B();
+	var objA=new A();
+	objA.show();
+	//objA.fb();
+	objB.show();
+	objB.fb();
+	/*------------------------------------------*/
+	var arr1=[1,2,3];
+	var arr2=arr1;		//并不是复制，让arr2指向arr1的空间，两个数组引用同一块空间 
+	arr2.push(4);
+	console.log(arr1); //1,2,3,4
+	console.log(arr2); //1,2,3,4
+	/*var arr1=[1,2,3];
+	var arr2=[];		
+	for(var i=0;i<arr1.length;i++){
+		arr2.push(arr1[i]);
+	}
+	arr2.push(4);
+	//此时arr2和arr1不是同一个地址了
+	/*-----------------------------------------------------------------*/
+	var Pet={
+		words:'miao',
+		speak:function(say){
+			console.log(say+' '+this.words);
+		}
+	};
+	//Pet.speak('Speak');
+
+	var Dog={
+		words:'Wang'
+	};
+
+	//Pet.speak.call(Dog,'Speak');
+	//应用某一对象的一个方法，用另一个对象替换当前对象。
+
+</script>
+<body>
+	
+</body>
+</html>

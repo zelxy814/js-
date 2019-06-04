@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 20px;
+			height: 20px;
+			background: #f00;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script>
+		function getPos(ev){
+			var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft,
+				scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			return {x:scrollLeft+ev.clientX,y:scrollTop+ev.clientY};
+		}
+		
+		document.onmousemove=function(ev){
+			var divs=document.getElementsByTagName('div'),
+				oEvent=window.event||ev,
+				pos=getPos(oEvent);
+			// 	divs[0].style.left=pos.x+'px';
+			// 	divs[0].style.top=pos.y+'px';
+			// for(var i=1;i<divs.length;i++){
+			// 	divs[i].style.left=divs[i-1].offsetLeft+20+'px';
+			// 	divs[i].style.top=divs[i-1].offsetTop+20+'px';
+			// }
+				for(var i=divs.length-1;i>0;i--){
+					divs[i].style.left=divs[i-1].offsetLeft+20+'px';
+					divs[i].style.top=divs[i-1].offsetTop+'px';
+				}
+				divs[0].style.left=pos.x+'px';
+				divs[0].style.top=pos.y+'px';
+				
+		};
+	</script>
+</body>
+</html>

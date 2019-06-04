@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//原型缺点，不能传参，内容共享;因为原型的内容只有一个，就算传参也以最后一个为准。
+	//构造函数大驼峰
+	// 所有函数都有prototype属性，里面包括prototype属性方法和prototype.constructor和__proto__。
+	//Boy.prototype 原型 ，__proto__指向原型，原型也是对象
+	//Boy.prototype = {};  是祖先，在定义时就有.
+	//后代是不能改变祖先原型属性的。可以删除自己的属性
+	Boy.prototype.sex = 'female';
+	Boy.prototype.LastName = 'zhai';
+	function Boy(name,age){
+		//__proto__把自己和原型连在一起，如果对象访问的属性没有就会通过_proto__的指向上原型上找。为什么对象先找自己的没有的话能找原型，就是因为有继承的__proto__属性，指向它的原型。
+		// var this = {
+		// 	__proto__: Boy.prototype; //__proto__里面放的是父级原型
+		// };
+		//自己有的属性用自己的，就近原则。没有的再去原型上找。
+		this.LastName = 'zhang'; 
+		this.name=name;
+		this.age=age;
+		//constructor可以手动更改，子代指向的父亲就改变了。
+		Boy.prototype.constructor = Person;
+		
+	};
+
+	var Obj = {
+		sex : 'Tom',
+		name: 'Jack'
+	};
+
+	function Person(){}
+	var boy1 = new Boy('Lee',15);
+	var boy2 = new Boy('Ann',30);
+	var person = new Person();
+	//先去自己的属性中去找，找不到在沿着__proto__去原型中找.
+	console.log(boy1.LastName);
+	boy1.__proto__ = Obj;
+	console.log(Boy.__proto__); //父级原型改变
+	console.log(boy1.__proto__); 
+	console.log(Boy.prototype);
+	//构造器，对象通过constructor可以找到谁成产了它。
+	console.log(boy1.constructor);
+	//__proto__里面是原型 Boy.prototype， 可以改，改成谁它继承的就是谁的原型。
+	//__proto__里面放的是父级原型，每一个对象都有一个__proto__属性。
+	console.log(boy1.__proto__);   
+
+
+
+	var obj1 = {name:'a',age:12};
+	var obj2 = obj1;  //他俩指向同一个地址
+	obj2.age = 15;
+	obj2 = {name:'Jack',age:100};	 //换了个地址
+
+	Car.prototype.name = 'Sunny';
+	function Car(){
+
+	}
+	//Car.prototype.name = 'Sunny2';//在同一个对象上改是同步改变的。
+	var BM = new Car();  //先new,对象已经生成了。BM指向的是父级原来的原型，后来父级原型改另一个对象了。但孩子的__proto__还是指向原来的prototype
+	/*	1.Car.prototype = {name: 'Sunny'};
+		2.__proto__ = Car.prototype;
+		3.Car.prototype = {name: 'Cherry'};
+	*/
+	Car.prototype = {
+		name: 'Cherry'
+	};
+	//var BM = new Car(); 
+	console.log(BM.name);
+
+</script>
+</html>

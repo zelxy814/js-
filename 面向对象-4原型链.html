@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+		原型链以__proto__连接，就近原则。
+		传统继承方式--->原型链  过多的继承了没用的属性
+		比如son即继承了father的属性又继承了father原型链上的属性，和grand的属性以及其原型链上的属性。
+	*/
+	/*
+		[[prototype]]是官方所定义的属性，而__proto__是浏览器自己对[[prototype]]所做的实现。也就是说，官方并未定义[[prototype]]叫什么，是浏览器自己根据标准制定出来的。但是！在ES6官方把[[prototype]]作为对象的内部属性，跟[[configurable]]一样，外部无法直接访问。当我们定义一个函数时，内部同时产生了 __proto__和prototype属性。
+		原型链就是依托__proto__和prototype连接起来的一个原型链条，__proto__属性是对象可以访问的。
+
+
+		❤我们知道，每个Js函数对象，都拥有一个原型对象prototype，这个原型对象是函数自己的属性，并且这个原型对象跟普通对象没有区别，因此它也可以访问__proto__，自然它的__proto__指向的是Object.prototype（创建原型对象的构造函数的prototype对象）。
+		函数也是一个对象，当然他也可以访问__proto__内部属性，这就为接下来的用new 调用函数进行面向对象编程打下了基础。。但是他的__proto__的内部属性并非跟普通对象一样指向Object.prototype对象，相反他指向Function.prototype对象，而Function.prototyp对象的__proto__再指向Object.prototype。
+		function Foo(){};
+		Foo.__proto__===Function.prototype;  //true
+		Foo.__proto__.__proto__ === Object.prototype;//ture
+		Foo.prototype.__proto__===Object.prototype;  //true
+		 
+
+		❤原型对象是在函数对象下的一个属性，而普通对象是没有原型对象。而该构造函数创建的实例对象会继承原型中的{ 属性和方法 }，实例对象__proto__属性，指向创建它的构造函数的prototype对象，__proto__属性这个属性是继承自原型链，非自有属性。
+		var obj = {};
+		obj.__proto__ === Object.prototype;//  true
+		foo.hasOwnProperty('__proto__');  //false
+
+		❤  var foo=new Foo{};
+		对于new操作，一般来讲是四步操作：1 生成一个新对象  2 将新对象执行原型链接到函数的prototype对象上，3 把新对象绑定到this上（如果没有new，内部this是指向window的） 4 如果没有return，返回函数执行结果的新对象。
+		foo.__proto__ === Foo.prototype
+		foo.__proto__.__proto__=== Object.prototype
+	*/
+	/* 	Grand.prototype.__proto__--->Grand.prototype.
+		Grand.prototype.constructor--->Grand.
+	Grand还不是头，Grand.prototype.__proto__--->Object.prototype.
+		Object.prototype是所有对象的最终原型。
+	*/
+
+	Grand.prototype.lastName = 'Deng';
+	function Grand(){
+
+	}
+	var grand = new Grand();
+
+/************************************************************/
+	Father.prototype = grand;
+	function Father(){
+		this.name = "zhai";
+		this.money = {
+			fortune: 200
+		};
+		this.num = 100;
+		//Father.prototype.constructor = Father;
+	}
+	var father = new Father();
+/**************************************************************/
+	Son.prototype = father;
+	function Son(){
+		this.habbit = 'smoke';
+		//Son.prototype.constructor = Son;
+	}
+	var son = new Son();
+	console.log(son.lastName);
+	//后代可以通过 引用值 的方式修改父级属性，增删改里面的值。不能删除整个对象，
+	son.money.fortune2 = 400;
+	console.log(father.money);
+	//对于不是对象自身的属性不能覆盖值。
+	son.num++;
+	console.log(father.num); //100
+	//son.__proto__-->new Father().__proto__-->new Grand().__proto__-->Grand.prototype
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*var pattern = /g..gle/;//点符号表示任意除换行符之外的字符。
+	var str = 'go!gle';
+	console.log(str.match(pattern));
+	console.log(pattern.exec(str));*/
+
+	/*var pattern = /go?gle/;//?号表示匹配一个或0个。
+	var str = 'gogle';
+	console.log(str.search(pattern));
+	console.log(pattern.test('ggle'));*/
+
+	/*var pattern = /go*gle/;//*号表示前面一个字符0个或多个都可以。
+	var str = 'ggle';
+	console.log(str.match(pattern));
+	console.log(pattern.exec('gogle'));*/
+
+	/*var pattern = /go+gle/;//+号表示至少一个。
+	var str = 'ggle';
+	console.log(str.search(pattern));
+	console.log(pattern.test('gooooogle'));*/
+
+	/*var pattern = /go\sgle/;//s号表示空格符。
+	var str = 'go  gle';
+	console.log(str.match(pattern));
+	console.log(pattern.test('go gle'));*/
+
+	/*var pattern = /gogle\b/;// \b号表示是否达到边界.
+	var str = 'gogle';
+	console.log(str.match(pattern));
+	console.log(pattern.test('goglesss'));*/
+
+	/*var pattern = /google|baidu/;// |号表示或.
+	var str = 'google';
+	console.log(str.match(pattern));
+	console.log(pattern.test('baidu'));*/
+
+	/*var pattern = /(google){2,4}/;// ()号表示分组，分组可以看成一个字符。
+	var str = 'hellogooglegoogle';
+	console.log(str.match(pattern));
+	console.log(pattern.test('google'));*/
+
+	/*var pattern = /8(.*)8/;// ()号表示分组，分组可以看成一个字符。
+	var str = 'hello8google8';
+	console.log(str.match(pattern));
+	console.log(pattern.test('google'));
+	console.log(RegExp.$1);   //$1获取到模式中第一个分组对应的匹配的内容
+	*/
+	/*var pattern = /(.*) (.*)/;
+	var str = 'google baidu';
+	str.match(pattern);
+	console.log(RegExp.$1,RegExp.$2);*/
+
+	/* var pattern = /8(.*?)8/g; //?去除贪婪
+	 //pattern = /8([^8]*)8/
+	var str = '8google8 8google8 8google8';
+	console.log(str.replace(pattern,'1'));
+	*/
+
+	/*var pattern = /(\d+)([a-z])/;  //捕获性分组
+	var str = '123abc';
+	var a = pattern.exec(str);
+	console.log(a);  //返回整个字符串，再返回每个分组。
+	*/
+	/*var pattern = /(\d+)(?:[a-z])/;  //非捕获性分组
+	var str = '123abc';
+	var a = pattern.exec(str);
+	console.log(a);  //返回整个字符串，再返回每个分组。
+	*/
+	/*var pattern = /goo(?=gle)/;  //goo后面必须跟gle才能捕获，这里要注意，返回的是goo，不是google。
+	var str = 'google';
+	var a = pattern.exec(str);
+	console.log(a);  //返回整个字符串，再返回每个分组。
+	*/
+	/*var pattern = /\[/;  //用\匹配正则里的特殊字符
+	var str = '1[23abc';
+	var a = pattern.exec(str);
+	console.log(a);  //返回整个字符串，再返回每个分组。*/
+
+	/*
+	邮政编码：/[1-9][0-9]{5}/
+	压缩包： /^[\w\-]+\.zip|gz|rar/     //[]表示一个范围
+	*/
+	var pattern = /^[\w\-\.]+$/;  //用\匹配正则里的特殊字符
+	var str = '1_b.c_';
+	var a = pattern.exec(str);
+	console.log(a);
+	
+</script>
+</html>

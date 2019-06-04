@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	Person.prototype = {
+		height: 100
+	};  //-->Object.prototype
+	function Person (){
+		this.eat = function(){
+			this.height ++;
+		};
+	}
+	var person = new Person();
+	var per = new Person();
+	//Object.create(原型);
+	var per1 = Object.create(Person.prototype);
+	//对象字面量
+	var obj = {};  //系统内部--> new Object();
+	//__proto__是隐式内部属性，绝大多数对象都会继承Object.prototype，但是,以下这种没有，还有null和undefined。
+	var obj1 = Object.create(null);  // 无原型，没有__proto__，可以自己加，但是系统不认。
+</script>
+</html>

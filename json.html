@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//JSON 数组
+	//[ "Google", "Runoob", "Taobao" ]
+	/*JSON 对象
+	{
+		"name":"Lee",
+		"age":18,
+		"work": {
+			"job":"web开发",
+			"address":"beijing"
+		},
+		"member":[{
+			"name":"Lee",
+			"hobby":["sing","dance"]
+		},{
+			"name":"ben",
+			"hobby":["sing","dance"]
+		}]
+	}
+	把JSON赋值给一个对象。
+	*/
+	var aa = {
+		"name":"Lee",
+		"age":18,
+		"work": {
+			"job":"web开发",
+			"address":"beijing"
+		},
+		"member":[{
+			"name":"Lee",
+			"hobby":["sing","dance"]
+		},{
+			"name":"ben",
+			"hobby":["sing","dance"]
+		}]
+	}
+	//JSON.stringify(value[, replacer[, space]])
+	//如果 replacer 为函数，则 JSON.stringify 将调用该函数，并传入每个成员的键和值。
+	//如果 replacer 是一个数组，则仅转换该数组中具有键值的成员。
+var test = JSON.stringify(aa,['age','name','member']);
+//转换为js对象
+var test2 = JSON.parse(test);
+console.log(test);
+
+
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var obj = {
+		name:"abc",
+		age:123,
+		card:['visa','master'],
+		wife:{
+			name:"bcd"
+		}
+	};
+	// var obj1 = {
+	// 	name: obj.name,
+	// 	age: 123,
+	// 	card:[obj.card[0],obj.card[1]];
+	// 	wife:{
+	// 		name: "bcd";
+	// 		son:{}
+	// 	}
+	// };
+
+	//也可以遍历数组
+	// for( var prop in obj1){
+	// 	console.log(prop);
+	// }
+	/*	1.判断是不是原始值，是原始值直接拷贝。typeof() object
+		2.是引用值判断是数组还是对象. instanceof  toString constructor
+		3.建立相应的数组或对象
+		
+	*/
+
+	//面向对象-8继承.html
+	function deeClone(origin,target){
+		var target = target || {};
+		var toStr = Object.prototype.toString;
+		var arrStr = '[object Array]';
+		for(var prop in origin){
+			if(origin.hasOwnProperty(prop)){
+				if(origin[prop] !== null && typeof (origin[prop]) == 'object'){
+					if(toStr.call(origin[prop]) == arrStr){
+						//console.log('[object Array]'=='[object Object]');
+						//console.log(Object.prototype.toString.call(origin[prop]));
+						target[prop] = deeClone(origin[prop],[]);
+					}else{
+						//console.log(Object.prototype.toString.call(origin[prop]));
+						target[prop] = deeClone(origin[prop],{});
+					}
+				}else{
+					target[prop] = origin[prop];
+				}
+			}
+		}
+		return target;
+	}
+
+var obj1 = deeClone(obj);
+
+if(Object.prototype.toString.call(obj.card) == '[object Array]'){
+	console.log(123);
+}
+
+
+
+
+	var str = JSON.stringify(obj);
+	//console.log(str);
+
+</script>
+</html>

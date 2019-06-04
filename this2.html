@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//"use strict"  //严格模式
+	var name = '222';
+	var a = {
+		name:"111",
+		say : function(){
+			console.log(this.name);
+			console.log(this);
+		}
+	};
+	var fun = a.say;
+	fun();  //"222" 没有任何调用fun() this指向window
+	a.say();
+	var b = {
+		name : "333",
+		say : function(fun){
+			fun();   //只是在你的方法体里执行。
+			console.log(this);
+		}
+	};
+	b.say(a.say);           // 222
+	b.say = a.say;
+	b.say();                //333
+/****************************************************************/
+	var c = {
+		name: '444',
+		say : function(){
+			(function(){
+				console.log(this.name);   //222
+				console.log(arguments.callee);  //指向函数自身引用
+			})();
+		}
+	};
+	c.say();
+/***********************************************************/
+	var num = (function(n){
+		if(n==1){
+			return 1;
+		}
+		return n * arguments.callee(n-1);  //arguments.callee在函数内部，函数自身的引用
+	})(5);
+	console.log(num);
+
+	function test(){
+		console.log(arguments.callee==test); //true
+	} 
+	function demo(){
+		console.log(demo.caller); //demo在哪个环境被调用
+	}
+	test();
+</script>
+</html>

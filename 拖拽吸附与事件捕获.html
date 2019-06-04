@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{
+			width: 400px;
+			height: 400px;
+			background: #abc;
+			position: relative;
+			left:0;
+			top: 0;
+
+		}
+		#div{
+			width: 80px;
+			height: 80px;
+			background: #ccc;
+			position: absolute;
+			left:0;
+			top: 0;
+
+		}
+		
+	</style>
+</head>
+<body>
+	<!-- 在IE7,8下拖拽会选中文字 -->
+<div id='div1'>
+	zfhdvbnkjahdf bgfusv bfjkgh bj
+	<div id="div">sgbvf df bfghndytgfv </div>
+</div>
+	
+	<script>
+		var div=document.getElementById('div'),
+			div1=document.getElementById('div1');
+		var posX=0,posY=0;
+		div.onmousedown=function(ev){
+			var oEvent=event||ev;
+			posX=oEvent.clientX-div.offsetLeft;
+			posY=oEvent.clientY-div.offsetTop;
+			document.onmousemove=move;
+			document.onmouseup=up;
+			//getCapture()兼容IE
+			if(div.setCapture){
+				div.setCapture();
+			}
+			// document.onmousemove=move;
+			// document.onmouseup=up;
+			//在火狐下拖拽空div时。第二次会出现阴影。所以屏蔽掉默认属性
+			return false;
+		};
+
+		
+		function move(ev){
+			var oEvent=ev||window.event;
+			var left=oEvent.clientX-posX,
+				top=oEvent.clientY-posY;
+				if(left<30){
+					left=0;
+				}
+				if(top<30){
+					top=0;
+				}
+				if(left>div1.offsetWidth-div.offsetWidth-30){
+					left=div1.offsetWidth-div.offsetWidth
+				}
+				if(top>div1.offsetHeight-div.offsetHeight-30){
+					top=div1.offsetHeight-div.offsetHeight;
+				}
+			div.style.left=left+'px';
+			div.style.top=top+'px';
+			};
+		function up(){
+			 this.onmouseup=null;
+			this.onmousemove=null;
+			if(div.releaseCapture){
+				div.releaseCapture();
+			}
+		}
+	</script>F:/前端/Sublime Text3/JavaScript/js高级/拖拽吸附与事件捕获.html
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input id="oPut" type="text">
+	<button id="btn">创建</button>
+	<ul id="oUl">	
+		<p>123</p>
+	</ul>
+	<script>
+		var btn=document.getElementById('btn'),
+			oUl=document.getElementById('oUl'),
+			oPut=document.getElementById('oPut');
+			btn.onclick=function(){
+				var oLi=document.createElement('li');
+				//console.log(oLi);
+				//插末尾
+				//oUl.appendChild(oLi);
+				oLi.innerHTML=oPut.value;
+				var oLis=document.getElementsByTagName('li');
+				if(oLis.length>0){
+					oUl.insertBefore(oLi,oLis[0]);
+				}
+				else{
+					oUl.appendChild(oLi);
+				}
+			};
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*预解析过程
+		var i;
+		var i;
+		最后 i=5
+		console.log(i);
+		console.log(i);
+	*/
+	/*function box(){
+		for(var i=0;i<5;i++){}  //js中没有块级作用域的概念
+		console.log(i);
+		var i;					//就算重新声明还是能访问到，会对重新声明视而不见，当然重新初始化相当于重新赋值，会改变。
+		console.log(i);
+	}
+	box();
+	*/
+	//使用块级作用域(私有作用域)
+/*	function box(){
+		(function(){
+			for(var i=0;i<5;i++){}  //包含在自我执行的匿名函数中，就可以实现私有作用域
+		})();
+		console.log(i);				//外部不可以访问
+	}
+	box();*/
+
+
+	/*function Box(){
+		var name = 'Lww';			//变量，私有的
+		this.age=100;				//属性，共有的
+		this.run=function(){		//方法，共有的
+			return '运行中';
+		};
+	}
+	var box1 = new Box();
+	console.log(box1.name); 
+	console.log(box1.age);
+	console.log(box1.run());
+	*/
+	function Box1(){
+		var name = 'Lww';			//私有变量
+		var age=100;				
+		function run(){			//私有函数
+			return '运行中';
+		};
+		this.publicGo=function(){  //对外可见的公共接口，特权方法
+			return age+run();
+		}
+	}
+	var box1 = new Box1();
+	console.log(box1.publicGo());
+</script>
+</html>

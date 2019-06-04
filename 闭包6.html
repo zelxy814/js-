@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*闭包原理
+	*里面的函数b看到基础函数a的执行成果劳动成果，并且保存到了自己身上，所*以你让他活的比基础函数还长的话，就产生了不该产生的效果。闭包状态里面*函数活的比外面函数长.
+	*正常情况下里面的函数先执行，外面的函数在执行完，现在让里面的函数保存到了全局，想执行的时候再执行，他俩的生命周期不一样，里面的函数在执行的时候还能用你的东西。*/
+	function a(){
+		//里面的函数被保存在函数外部就会形成闭包。里面的函数会保存基础函数的劳动成果。就是a执行完会剪掉指向的AO，但是b被返回到外面还会指向a的AO，a的AO并没有释放只是a不在指向它。AO是预解析的过程，里面有变量函数声明和定义。
+		function b(){
+			var bbb = 234;
+			document.write(aaa);
+		}
+		var aaa = 123;
+		return b;
+	}
+	var glob = 100;
+	var demo = a();
+	demo();
+</script>
+</html>

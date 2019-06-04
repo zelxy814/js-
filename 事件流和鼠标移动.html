@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" onclick="console.log('html')">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{padding:50px;}
+		div:first-child{
+			background: #f0f;
+		}
+		div>div:nth-child(1){
+			background: #ff0;
+		}
+		div>div>div:nth-child(1){
+			background: blue;
+		}
+		body{border: 1px red solid;}
+		#cursor{
+			width: 20px;
+			height: 20px;
+			background: rgba(200,20,30,.2);
+			/*absolute的等级虽然高，但是如果没有设置left，top它是不会覆盖其他元素的，但它确实不占文档流*/
+			position: absolute;
+		}
+	</style>
+</head>
+<body onclick="console.log('body')">
+	<div onclick='console.log("div1")'>
+		<div id="div2">
+			<!--事件冒泡，因为子元素在父元素内，子元素的事件会一直往上传-->
+			<div onclick='console.log(getComputedStyle(this,null).background)'></div>
+		</div>
+	</div>
+	<div id="cursor"></div>
+	<script>
+		/**********************************************/
+		var oDiv=document.getElementById('div2');
+			
+		oDiv.onclick=function(ev){
+			var oEvent=ev||window.event;
+			console.log('div2');
+			//取消事件冒泡，不要冒泡到父级元素上去。
+			oEvent.cancelBubble=true;
+		};
+		/**********************************************/
+		function getPos(ev){
+			
+			//client是可视区距离，而div定位是根据body定位的，当把可视区距离给div定位可能会有差距。当可视区与页面顶部重合时不会有问题。
+			//cursor.style.left=oEvent.clientX+'px';
+			//cursor.style.top=oEvent.clientY+'px';
+			//scrollTop被卷上去的距离
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop,
+				scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+
+			return {X:scrollLeft+ev.clientX,Y:scrollTop+ev.clientY};
+		};
+
+		document.onmouseover=function(ev){
+			var cursor=document.getElementById('cursor');
+			var oEvent=ev||window.event;
+			var pos=getPos(oEvent);
+
+			cursor.style.left=pos.X+'px';
+			cursor.style.top=pos.Y+'px';
+		};
+	</script>
+</body>
+</html>

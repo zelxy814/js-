@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<input type="radio" name="sex" value="女" checked="checked">女
+		<input type="radio" name="sex" value="男">男
+		<textarea name="textarea" id="" cols="30" rows="10">333</textarea>
+	</form>
+	<form action="" name="myForm">
+		姓名:<input type="text" name="user" value="Lee">
+		密码：<input type="password">
+		<input type="submit" value="我被阻止默认行为">   
+		<button>提交</button>
+		sss
+	</form>
+</body>
+<script>
+
+	var form = document.forms[0];
+	var form2 = document.forms["myForm"];
+	var btn = document.getElementsByTagName("button")[0];
+	var user = form2.elements['user'];
+	var textarea = form.elements['textarea'];
+	console.log(form);
+	console.log(form2.elements.length);  //获取表单元素的长度
+	console.log(form.elements[0]); 
+	console.log(form.elements[0].form); //得到所属的form对象
+	console.log(form.elements["sex"]);//获取name是sex的字段
+	console.log(form.elements["sex"][0]);
+	console.log(form.elements["sex"][1].value);  
+	user.focus();
+	user.blur();
+	addEvent(user,'focus',function(){
+		console.log('123');
+	});
+	addEvent(user,'change',function(){
+		console.log('123');
+	});
+
+
+	//user.select();//选定文本，刷新选定
+
+
+
+	function addEvent(ele,type,fn){
+		try{
+			 ele.addEventListener(type,fn,false);
+			}
+		catch(e) {ele.attachEvent('on'+type,fn);
+		}
+	}
+
+	addEvent(form2,'submit',function(){
+		event.preventDefault();
+		setTimeout(function(){
+			form2.submit();
+		},3000);
+	});
+	addEvent(btn,'click',function(){
+		form2.submit();
+		alert(user.value);
+		alert(textarea.value);//虽然textarea没有value属性，担也可以获取，而DOM的getAttribute()属性不兼容textarea
+	});
+	addEvent(document,'keydown',function(e){
+		var oEvent=e||event;
+		//ctrl键加回车键提交
+		if(oEvent.keyCode==13&&oEvent.ctrlKey){
+			form2.submit();
+		}
+	});
+</script>
+</html>

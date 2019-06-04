@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var str='asda 34 656 cas33a';
+		console.log(str.search('ab'));
+		console.log(str.substring(1,2));
+		console.log(str.substring(1));
+		console.log(str.charAt(0));
+		console.log(str.split('-'));
+
+		//var str='264gsg 48384 sdhf fnk8-84hb';
+		//正则对象
+		//var re=new RegExp('a','i');  //代表字母a本身，i表示忽略大小写
+		//var re=/a/;   //代表字母a本身
+		var re=/a/i;    //表示第一个字母a，忽略大小写
+		console.log(str.search(re));
+		//转义 \d 表示一个数字 [0-9],/\d\d/表示两个数字
+		var re1=/\d/;
+		// g表示找到全部,是global简称
+		var re1=/\d/g;
+		console.log(str.search(re1));
+		//match 把所有匹配的东西，全都提取出来,以数组的形式
+		console.log(str.match(re1));
+		// 量词，+ 表示若干（多少都可以）
+		var re2=/\d+/g;
+		console.log(str.match(re2));
+		var re3=/a/g;
+		//将全部的a替换成9
+		console.log(str.replace(re3,'9'));
+		console.log(str);
+		var re4=/[a-z0-9]+/g;
+		console.log(str.match(re4));
+	</script>
+</body>
+</html>

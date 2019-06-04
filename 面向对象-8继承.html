@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	Father.prototype.lastName = "dade"; 
+	function Father(){
+
+	}
+	function Son(){
+		this.name=123;
+	}
+	//Son和Father共享同一个原型地址，不方便修改。
+	//Son.prototype = Father.prototype;
+	 //圣杯模式
+	// function F(){}
+	// F.prototype = Father.prototype;
+	// Son.prototype = new F();
+	 
+	function inherit(Target, Origin){
+		function F(){};
+		F.prototype = Origin.prototype;
+		Target.prototype = new F();
+		Target.prototype.constructor = Target;
+		Target.prototype.uber = Origin;
+	}
+
+    //son.__proto__-->new F().__proto__-->Origain.prototype.
+    inherit(Son,Father);
+	var son = new Son();
+	var father = new Father();
+
+
+
+
+	//原型链上的属性也会遍历
+	for(var prop in son){
+		console.log(prop);
+		//判断是不是自己的属性
+		if(son.hasOwnProperty(prop)){
+			console.log(prop);
+		}
+	}
+	var arr = [1,1,3,4,5];
+	for(var prop in arr){
+		//console.log(prop);
+		console.log(arr[prop]);
+		console.log(arr[prop+1]);
+		console.log(arr[prop] == arr[prop+1]);
+		// if(arr.hasOwnProperty(prop)){
+		// 	console.log(prop);
+		// }
+	}
+</script>
+</html>

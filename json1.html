@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h2>从 JSON 对象中创建 JavaScript 对象</h2>
+	<p id="demo"></p>
+</body>
+<script>
+	var obj = JSON.parse('{"name":"runoob","alexa":10000,"site":"www.runoob.com"}');
+	document.getElementById("demo").innerHTML = obj.name + ":" + obj.site;
+</script>
+</html>

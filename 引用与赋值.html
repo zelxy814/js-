@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//定义对象用{}
+		var person1={
+			name:'xiaoming',
+			age: 14,
+			jieshao: function(){
+				console.log(this.name);
+			}
+		}
+		var person2 = person1;  //赋值代表引用
+		person2.name="xiaoming2";
+		console.log(person1);
+		// var 定义的对象很小的，像值，数字，字符串，一个对象是很大的存不下，所以var定义的对象变量存的是对象内容的地址。如果赋值，则表示两个变量指向同一个地址。
+		
+		//ES5  function --> ES6 class
+		//类 包含属性和方法
+		function personClass(){
+			this.name: 'xiaoming';
+			this.age: 14;
+			this.jieshao: function(){
+				console.log(this.name);
+			}
+		}
+		var people1 = new personClass();
+		var people2 = new personClass();
+		//构造函数
+		function personClass(name,age){
+			this.name: name;
+			this.age: age;
+			this.jieshao: function(){
+				console.log(this.name);
+			}
+		}
+		var people1 = new personClass('xiaoming',14);
+		var people2 = new personClass('xiaohong',15);
+
+		//命名空间
+		var cc={};
+		cc.age=100;
+		//自己定义一个命名空间，自己写的好的方法属性都可以添加到自己的命名空间中，到时候拿来用。不同命名空间方法不会冲突。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

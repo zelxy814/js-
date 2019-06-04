@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>1</button>
+	<button>2</button>
+	<button>3</button>
+	<button>4</button>
+</body>
+<script>
+ var severalObj=document.getElementsByTagName("button"); 
+      /*for(var i=0;i<severalObj.length;i++){
+      	//匿名函数不会自我执行，当点击onclick时触发，这时候循环已经完成，i=5 ，所以匿名函数每次都返回5.
+             severalObj[i].onclick=function(){
+                    console.log(i);
+             };
+      }*/
+
+    //匿名函数的自我执行
+/*for(var i=0;i<severalObj.length;i++){
+	(function(i){
+    severalObj[i].onclick=function(){
+        console.log(this.innerHTML);
+    }
+	})(i);
+	console.log(severalObj);
+}
+severalObj = null;
+
+*/
+
+
+
+
+	/*function box(){
+		var arr=[];
+		for(var i=0;i<5;i++){
+			arr[i]=function(){
+				return i;
+			};
+		}
+		return arr;
+	}
+	//当我们拿到arr时，循环已经结束了，i已经为4，i++为5，
+	var arr = box();
+	console.log(arr);
+	for(var i=0;i<arr.length;i++){
+		console.log(arr[i]());       //全是5
+	}
+	*/
+
+	function box(){
+		var arr=[];
+		for(var i=0;i<5;i++){
+			//匿名函数的自动执行，每次循环都自动执行,赋值给一个变量，第一个括号可以去掉
+			/*arr[i]=(function(){
+				return i;
+			})();*/
+			arr[i]=function(){
+				return i;
+			}();
+		}
+		return arr;
+	}
+	var arr = box();
+	console.log(arr);
+	for(var i=0;i<arr.length;i++){
+		console.log(arr[i]);       //全是5
+	}
+
+	var user = 'This is Window.'
+	var BOX = {
+		user : 'This is ObjectBOX.',
+		getThis: function(){
+			//这里作用域是Object
+			//var _this = this;
+			return function(){
+			//这里的作用域是window
+			return this;
+				//return _this;
+			};
+		}
+	};
+	//闭包里的this指向 window
+	console.log(BOX.getThis()().user);
+	console.log(BOX.getThis().call(BOX).user);
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		//问题1：为什么先调用，再声明也可以使用
+		//预解析 function fnName(a,b){return a+b}提前
+		//console.log(fnName1(1,2))
+		console.log(fnName1(1,2));
+		function fnName1(a,b){
+			return a+b;
+		}
+
+		//问题2：为什么会出错
+		//Uncaught TypeError: fnName is nor a function
+		/*var fnName2;
+		console.log(fnName2);   //undefined
+		console.log(fnName2(1,2));
+		fnName2=function(a,b){return a+b;}
+		*/
+		//console.log(fnName2);
+		//console.log(fnName2(1,2));
+		var fnName2 = function(a,b){
+			return a+b;
+		};
+
+		/*预解析
+			function f1(){}
+			f1();
+				//f1()预解析
+				var a;
+				a=b=c=9;     //b,c是全局变量
+				console.log(c);     //9
+				console.log(b);		//9
+				console.log(a);		//9
+			console.log(c);		//9
+			console.log(b);		//9
+			console.log(a);		//is not defined
+		*/
+		f1();
+		console.log(c);
+		console.log(b);
+		console.log(a);
+		function f1(){
+			var a = b = c = 9;
+			console.log(c);
+			console.log(b);
+			console.log(a);
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

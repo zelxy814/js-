@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	
+	</style>
+</head>
+<body>
+	<input id="btn" type="button">
+	<script>
+		var btn=document.getElementById('btn');
+		//attachEvent 兼容IE7,8
+		btn.attachEvent('onclick',function(){
+			console.log('a');
+		});
+		btn.attachEvent('onclick',function(){
+			console.log('b');
+		});
+		//addEventListener兼容chrome和火狐，事件名不带on，不兼容IE7,8
+		// btn.addEventListener('click',function(){
+		// 	console.log(1);
+		// });
+		// btn.addEventListener('click',function(){
+		// 	console.log(2);
+		// });
+		//事件捕获，所有的点击都聚集在btn上。
+		btn.setCapture();
+	</script><!-- F:/前端/Sublime Text3/JavaScript/js高级/事件绑定.html -->
+</body>
+</html>

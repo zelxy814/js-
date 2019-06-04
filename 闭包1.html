@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//匿名函数的自我执行
+	(function(){
+		console.log(123);
+	})();  //(匿名函数)()第一个括号匿名函数，第二个括号表示执行。
+	(function(age){
+		console.log(age);
+	})(20);
+	//函数里的匿名函数,产生闭包
+	function box(){
+		return function(){
+			return "Lee";
+		};
+	}
+	var b = box();
+	console.log(box()());
+	//alert(b());
+	//闭包是有权访问另一个函数作用域中的局部变量的函数。
+	//创建闭包，在一个函数的内部创建另一个函数。
+	//局部变量实现累加
+	function Box(){
+		var num=0;
+		return function(){
+			num++;
+			return num;
+		};
+	}
+	//闭包里返回的局部变量不会被立刻销毁，会占用更多内存资源
+	var box = Box();
+	console.log(box());
+	console.log(box());
+	box = null;
+	console.log(box());  //解除引用，等待垃圾回收
+</script>
+</html>

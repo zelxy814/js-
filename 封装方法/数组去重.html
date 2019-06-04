@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// //for prop in arr 中prop是字符串
+	// Array.prototype.unique = function(){
+	// 	var len = this.length;
+	// 	for(var j=0; j<len; j++){
+	// 		// 每次循环都要估算arr.length
+	// 		for(var i=j+1; i<this.length; i++){
+	// 			if(this[j] == this[i]){
+	// 				this.splice(i,1);
+	// 				i--;
+	// 			}
+	// 		}
+	// 	}
+	// 	return this;
+	// }
+	// var arr = [1,1,3,6,2,4,7,6,4,4,4,4,1];
+	// console.log(arr.unique());
+
+
+
+// let obj = {
+// 	0:"abc",
+// 	1:'abc',
+// 	2:'123'
+// };
+
+//obj[1]  有--->'abc'
+//obj[1]  无--->'undefined'
+
+Array.prototype.unique = function(){
+	var temp = {},
+		arr = [],
+		len = this.length;
+	for(var i=0; i<len; i++){
+		if(!temp[this[i]]){
+			temp[this[i]] = 'abc';
+			arr.push(this[i]);
+		}
+	}
+	return arr;
+}
+
+arr = [1,1,3,5,7,8,4,3,5,7,3,2,0,0,0,0];
+var arr1 = arr.unique();
+console.log(arr1);
+</script>
+</html>

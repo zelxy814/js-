@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{
+			width: 200px;
+			height: 200px;
+			background: #ccc;
+			/*position: relative;*/
+		}
+		#div2{
+			width: 100px;
+			height: 100px;
+			background: #999;
+			position: absolute;
+			top: 50px;
+			left: 50px;
+		}
+		ul>li:nth-child(1){
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+	<ul>     11 <!-- 文本节点  -->
+		<li></li>      <!-- 元素节点，文本节点 -->
+		<li></li>      <!-- 元素节点，文本节点 -->
+	</ul>
+	<ul id="oUl">    11
+		<li><span></span></li>      
+		<li></li>      
+	</ul>
+	<ul id="ull">
+		<li>1223<a href="#">隐藏</a></li>
+		<li>fdds<a href="#">隐藏</a></li>
+		<li>ghfh<a href="#">隐藏</a></li>
+		<li>srgfvzs<a href="#">隐藏</a></li>
+		<li>;ul rdgg<a href="#">隐藏</a></li>
+	</ul>
+	<script>
+		//childNodes children 只能获取子节点
+		var oUl=document.getElementById('oUl');
+		/*IE6-8 childNodes 返回元素节点，有文本节点时算上文本节点， 其他的浏览器文本节点不管有没有都算上*/
+		console.log(oUl.childNodes.length);
+		for(var i=0;i<oUl.childNodes.length;i++){
+			//nodeType节点类型， 1表示元素节点，3表示文本节点 8表示注释
+			console.log(oUl.childNodes[i].nodeType);
+			if(oUl.childNodes[i].nodeType==1){
+				oUl.childNodes[i].style.background="red";
+			}
+		}
+		//只包括元素节点，不包括文本节点
+		console.log(oUl.children.length);
+
+		var aA=document.getElementsByTagName('a');
+		for(var i=0;i<aA.length;i++){
+			aA[i].onclick=function(){
+				this.parentNode.style.display="none";
+			};
+		}
+		var div2=document.getElementById('div2');
+		//offsetParent获取有定位的父级元素
+		console.log(div2.parentNode);
+		console.log(div2.offsetParent);
+	</script>
+</body>
+</html>

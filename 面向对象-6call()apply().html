@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Person(name,age){
+		//this==obj
+		this.name = name;
+		this.age = age;
+		console.log(this);  //不new的话this默认指向window。
+	}
+	var person = new Person('zhang',100);
+	var obj = {};
+	//call的作用，让Person执行时this的指向发生改变，指向obj,this==obj.
+	//函数都有call方法，对象可以借用别人的方法实现自己的属性。
+	Person.call(obj,'zhai',99);  
+	/*call()和apply()的区别，功能一样，第一个参数都是this指向，apply()后面的实参必须以数组的形式传递，arguments。call()一个一个传*/
+	function Student(name,age,sex){
+		//Person.apply(this.[name,age]);
+		Person.call(this,name,age);
+		this.sex = sex;
+	}
+	var student = new Student('sunny',123,'male');
+
+
+	function test(){
+
+	}
+	//我们写一个方法执行,正常执行时test.call()执行， test()---->test.call();
+</script>
+</html>

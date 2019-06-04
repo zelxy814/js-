@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*
+		数组的字面量是 var arr=[],var arr=new Array()使用Array这个构造函数创建数组对象。
+		对象的字面量是var obj={}，var o=new Object();
+		 有时候只需要一个对象就可以了，不需要创建一个构造函数。
+		 json和对象的字面量形式一样，键要加双引号。json是描述数据的一种标准规范。我们获取的数据是json形式的，如果不带双引号解析的时候会出错。
+		 // json
+		 var o = {
+			"name":"xiaom",
+			"age": 18,
+
+		 }
+		 */
+		 /*
+		 构造函数的目的是创建多个对象，自定义构造函数的目的是创建多个自己的对象。 用构造函数创建出来的是一类事物。
+		 */
+
+		 var stu = {
+		 	name: 'xiaom',
+		 	age: 16,
+		 	sex: function(){
+		 		console.log("女");
+		 	}
+		 };
+		 var stu1 = new Object();
+		 for(var i in stu){
+		 	stu1[i]=stu[i];
+		 	console.log(i);
+		 	//stu 没有 i 属性
+		 	console.log(stu.i);
+		 	// i 就是 "name" 字符串变量 stu.name
+		 	console.log(stu[i]);
+		 }
+		 console.log(stu1);
+		 console.log(stu['name']);
+		 var o = {
+		 	1: 2,
+		 	2: 4,
+		 	3: 6
+		 };
+		 for(var i in o){
+		 	console.log(i);
+		 	console.log(o.i);
+		 	console.log(o[i]);
+		 }
+		 console.log(o[2]);
+		 console.log(o['2']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//变量，自由的，不属于任何人
+		 //var a =12;
+		 var arr=[1,2,3,4,5,6];
+		 //属性，变量能做的事，属性都能做，属性属于一个对象的
+		 arr.a=12;
+		 console.log(arr.a); 
+		 function aaa(){        //函数，自由
+		 	 console.log("aaa"); 
+		 }
+		 //给一个对象添加一个事件本质上是添加一个方法
+		 arr.aaa=function(){	//方法，属于一个对象，
+		 	console.log(this.a); //this当前发生事件的对象，当前方法属于谁，this是谁
+		 };
+		 //不能在系统对象中随意附加方法、属性，否则会覆盖已有方法属性。
+		 //Data  日期对象 Array  数组   RegExp  正则 
+		 //object对象 没有功能
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

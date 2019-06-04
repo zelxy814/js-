@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//str.split(',')将字符串以逗号拆分成数组
+		var oDate=new Date();
+		oDate.setDate(oDate.getDate()+14);
+		//console.log(oDate);
+		//document.cookie="name=blue";
+		//document.cookie="pass=1234";
+		//不指定过期时间，浏览器关闭就过期
+		//document.cookie="pass=1234;+expires="+oDate;
+		//火狐下测试
+		console.log(document.cookie);
+		function setCookie(name,value,Dat){
+			var oDate=new Date();
+			oDate.setDate(oDate.getDate()+Dat);
+			document.cookie=name+'='+value+'expires='+oDate;
+		}
+		setCookie('name','user',12);
+		function removeCookkie(name){
+			setCookie(name,'user',-1);
+		}
+		removeCookie('name');
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+		1.先通篇检查语法错误
+		2.解释一行执行一行
+		函数声明整体提升，变量声明提升，赋值不提升。
+	*/
+	{console.log(a);
+	function a(a){
+		var a=10;
+		var a=function(){};
+	}
+
+	function test2(a){
+		console.log(a);  //function a(){}
+		var a = 1;
+		console.log(a);   //1
+		function a(){}
+		console.log(a);   //1
+		var b = function(){};
+		console.log(b);      //function(){}
+		function d(){}
+	}
+	test2(2);}
+/*********************************************/
+/* 	var bb
+	function test3(){......}
+	bb=3
+	console.log(test3)  // 输出function test3(){......} 但不执行
+	test3(1)
+		function test3(){...}
+		var test3
+		console.log(test3)   //function test3(){...}
+		test3 = 2
+		console.log(test3)   // 2
+*/
+
+	{var b=3;
+	console.log(test3);
+	function test3(test3){
+		console.log(test3);
+		var test3 = 2;
+		console.log(test3);
+		function test3(){
+			var b=5;
+			console.log(b);
+		}
+	}
+	test3(1);}
+/************************************************/
+/*
+	function test(){...}
+	var a;
+	a=1;
+	test();
+		var a;
+		console.log(a)   // undefined
+		a = 2;
+		console.log(a)   //2
+		a = 3;
+		console.log(a)   //3
+*/
+	{
+		a=1;
+		function test(){
+			console.log(a);
+			a = 2;
+			console.log(a);
+			var a = 3;
+			console.log(a);
+		}
+		test();
+		var a;
+	}
+/*********************************************/
+/*
+	function test(){...}
+	var a ;
+	test();
+		var b;    //预编译没有执行只要有var就提前
+		console.log(b)   // undefined
+		c = 3
+		console.log(c)   // 3
+	a = 1
+	console.log(a)     //1
+*/
+{
+	function test(){
+		console.log(b);
+		if(a){
+			var b =2;
+		}
+		c=3;
+		console.log(c);
+	}
+	var a;
+	test();
+	a =1;
+	console.log(a);
+}
+/*********************************************/
+	/*暗示全局变量 imply global variable */
+
+	{function test(){
+		return a;
+		a=1;
+		function a(){}
+		var a=2;
+		}
+		console.log(test());}
+</script>
+</html>

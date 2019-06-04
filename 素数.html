@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<form id="form">
+	<input type="number" name="" id="num1" value=0>
+	<input type="number" name="" id='num2' value=0>
+	<input id="btn" type='submit'>
+	<p id="p"></p>
+	</form>
+<script type="text/javascript">
+		var num1=document.getElementById('num1'),
+		num2=document.getElementById('num2'),
+		btn=document.getElementById('btn'),
+		p=document.getElementById('p');
+
+		btn.onmouseover=function(){
+		var m=Number(num1.value),n=Number(num2.value);
+		var max=Math.max(m,n),min=n>m?m:n,is;
+		if(min<=2){
+			p.innerHTML=p.innerHTML+'2,';
+		}
+		for(var i=min;i<=max;i++){	
+			is=issushu(i);
+			if(is==1){
+				p.innerHTML=p.innerHTML+i+',';
+			}
+			else{
+				is=1;
+			}
+
+		}
+
+	} 
+
+	function issushu(i){
+		if(i%2==0){
+				return 0;
+			}
+		for(var j=3;j<=Math.sqrt(i);j+=2){	
+				if(i%j==0){
+					return 0;
+				}
+			}
+			return 1;
+	}
+
+	
+
+
+	
+</script>
+</body>
+</html>

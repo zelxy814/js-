@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// function A(){
+ //    var res=[];
+ //    for(var i=0;i<5;i++)
+ //    {
+ //        res[i]=i;
+ //        }
+ //    alert(res[0]);
+	// } 
+	// A();    //0 
+
+	function A(){
+    var res=[];
+    for(var i=0;i<5;i++)
+    {
+    	//在传递函数时，并非值传递而是引用传递。
+    	/*会把值为匿名函数地址的指针传递给变量res[i],而并非把返回i传递给res[i]。
+    	新人一般会误把变量i和代码执行划等号，其实根本是不同的东西。
+    	那就是res[i]变成了匿名函数的函数名了，对res[i]进行自调用的话：(res[0])();*/
+    	/*值传递和引用传递是不一样的，值传递的话，res[0]在内存中会直接存储对应的变量i的值：0，而引用传递，则会让res[0]去存储一段代码的地址即指针，每次访问res[0]()，其实就等同于访问匿名函数的运行结果。而循环在访问之前就已经运算结束，i的值已经变成了5，自然就会输出5了。*/
+        res[i]=function(){return i};
+        }
+        return res;
+	} 
+	var res = A();
+	console.log(res[0]);  //函数
+	console.log(res[0]());   // 5
+	var bb = function(){}; //bb引用函数的地址
+</script>
+</html>

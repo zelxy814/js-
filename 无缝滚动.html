@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;padding: 0;
+		}
+		#div1{
+			width: 712px;
+			height: 108px;
+			margin: 0 auto;
+			position: relative;
+			background-color: #337ab7;
+			overflow: hidden;
+		}
+		#div1 ul{
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 108px;
+			border: 1px red solid;
+		}
+		li img{
+			width: 178px;
+			height: 108px;
+		}
+		#div1 ul li{
+			float: left;
+			width: 178px;
+			height: 108px;
+			list-style:none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oDiv=document.getElementById('div1'),
+				oUl=oDiv.getElementsByTagName('ul')[0],
+				oLi=oUl.getElementsByTagName('li');
+				oUl.innerHTML=oUl.innerHTML+oUl.innerHTML,
+				oA=document.getElementsByTagName('a'),
+				speed=2;
+				timer=null;
+			/*offsetWidth获取包括边框的宽度*/	
+				oUl.style['width']=oLi[0].offsetWidth*oLi.length+'px';
+				console.log(oUl.offsetLeft);
+				function move(){
+					oUl.style.left= oUl.offsetLeft+speed+"px";
+					if(oUl.offsetLeft<-oUl.offsetWidth/2){
+						oUl.style.left="0px";
+					}
+					if(oUl.offsetLeft>0){
+						oUl.style.left=-oUl.offsetWidth/2+'px';
+					}
+				}
+				timer=setInterval(move,30);
+				oA[0].onclick=function(){
+					speed=-2;
+				};
+				oA[1].onclick=function(){
+				};
+				oDiv.onmouseover=function(){
+					clearInterval(timer);
+				};
+				oDiv.onmouseout=function(){
+					timer=setInterval(move,30);
+				};
+		};
+	</script>
+</head>
+<body>
+	<a href="#">左</a>
+	<a href="#">右</a>
+	<div id="div1">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

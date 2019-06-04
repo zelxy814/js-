@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>键盘事件</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#count{
+			font-style: normal;
+		}
+	</style>
+</head>
+<body>
+	<p>字数限制在30字内，<span id="span"> 您还可以输入<em id="count">30</em> </span>字</p>
+	<div>
+		<textarea cols="70" row="10" id="text"></textarea>
+	</div>
+	<script type="text/javascript">
+		var text=document.getElementById("text");
+		var span=document.getElementById("span");
+		var count=document.getElementById("count");
+		var totle=30;
+		text.onkeyup=function(){
+			var len=text.value.length;
+			if(len<=totle){
+				var allow=totle-len;
+				span.innerHTML="您还可以输入"+allow;
+			}
+			else{
+				var allow=len-totle;
+				span.innerHTML="您已超出"+allow;
+			}
+			
+			
+		}
+		document.onkeydown=function(event){
+			console.log(event.keyCode);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DOM的查找方法</title>
+</head>
+<body>
+<!--     <div id="div1">第一个元素</div>
+	<div id="div2">第二个元素</div>
+	<div id="div3">第三个元素</div>
+<script>
+    var divs=document.getElementsByTagName("div");
+    for(var i=0;i<divs.length;i++){
+        var div=divs[i];
+        alert(div+" "+div.id+" "+div.innerHTML);
+    }
+</script> -->
+ <h3>前端书籍</h3>
+    <ul id="listWeb">
+        <li>htmll基础</li>
+        <li>CSS基础</li>
+        <li>JavaScript基础</li>
+        <li>Jquery框架</li>
+        <li>bootStrap框架</li>
+    </ul>
+    <h3>JAVA书籍</h3>
+    <ul id="listJava">
+        <li>JAVA语言基础</li>
+        <li>三大框架</li>
+        <li>JAVA深入浅出</li>
+    </ul>
+<script>
+    //补充代码
+    var lis=document.getElementById("listWeb").getElementsByTagName("li");
+    for(var i=0;i<lis.length;i++){
+        alert("前端书籍第"+(i+1)+"本："+lis[i]);
+    }
+    alert("前端书籍共计"+lis.length+"本");
+</script>
+</body>
+</html>

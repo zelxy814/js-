@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="box">
+	元素
+</div>
+<ul id="list1">
+	<li id="li1">前端开发</li>
+	<li>服务器开发</li>
+	<li>UI设计1</li>
+</ul>
+<ul>
+	<li class="li2">JavaScript</li>
+	<li class="li2">HTML5</li>
+	<li class="li2">CSS3</li>
+</ul>
+<script type="text/javascript">
+	var box1=document.getElementById("box");
+	box1.style.color='#f00';
+	var lis=document.getElementById("list1").getElementsByTagName('li');
+	// var lis2=document.getElementsByClassName("li2");
+	for(var i=0,len=lis.length;i<len;i++){
+		lis[i].style.color='#00f';
+		lis[i].style.backgroundColor="#ccc";
+	}
+	// for(var j=0,len=lis2.length;j<len;j++){
+	// 	lis2[j].style.color='#0f0';
+	// }
+	document.getElementsByClassName("li2")[0].style.color='#0f0';
+
+</script>
+</body>
+</html>

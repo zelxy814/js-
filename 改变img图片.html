@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.box{
+			width: 300px;
+			height: 300px;
+			position: relative;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+
+		}
+		img{
+			width: 300px;
+			height: 300px;
+			
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var img=document.getElementsByTagName("img")[0];
+			img.onclick=function(){
+			this.src="../img/5.jpg";
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	<div class="box">
+		<img src="../img/1.jpg">
+	</div>
+</body>
+</html>

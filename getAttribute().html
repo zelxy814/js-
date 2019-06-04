@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>getAttribute()</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<p id="text1" class="text2" align="center" data-type="title">文本</p>
+<script type="text/javascript">
+	var pp=document.getElementById("text1");
+	pp.setAttribute("data-color","red");
+
+	console.log(pp.id);
+	console.log(pp.className);
+	console.log(pp.align);
+	console.log(pp.getAttribute("id"));
+	console.log(pp.getAttribute("class"));
+	console.log(pp.getAttribute("align"));
+	console.log(pp.getAttribute("data-type"));
+	pp.removeAttribute("align");
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>onchange</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		window.onload=init;
+		function init(){
+			var menu=document.getElementById("menu");
+			menu.onchange=function(){
+				//获取选择的值，两种方法。
+				// console.log(this.value);
+				var menuVal=this.options[this.selectedIndex].value;
+				document.body.style.background=menuVal;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		请选择你喜欢的颜色：
+		<select id="menu">
+			<option value="">请选择</option>
+			<option value="#f00">红色</option>
+			<option value="#0f0">绿色</option>
+			<option value="#00f">蓝色</option>
+			<option value="#ff0">黄色</option>
+			<option value="#ccc">灰色</option>
+		</select>
+	</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML事件</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.lock{
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			border-radius: 5px;
+			background: gray;
+			cursor: pointer;
+		}
+		.unlock{
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			border-radius: 5px;
+			background-color: blue;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="btn" class="lock">锁定</div>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn");
+		btn.onclick=function(){
+			if(this.className=="lock"){
+				this.setAttribute("class","unlock");
+				this.innerHTML="解锁";
+			}
+			else{
+				this.className="lock";
+				this.innerHTML="锁定";
+			}
+		}
+	</script> -->
+	<input type="button" value="全选">
+    <script>
+        // 此处填写代码
+        var input=document.getElementsByTagName("input");
+
+        input[0].onclick=function(){
+            if(this.value=="全选"){
+                this.value="反选";
+            }
+            else{
+                  this.value="全选";
+            }
+        }
+    </script>
+</body>
+</html>

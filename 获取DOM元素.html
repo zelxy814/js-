@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>id</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.li1{
+			border-bottom: 1px red solid;
+		}
+	</style>
+</head>
+<!-- <script type="text/javascript">
+	window.onload=function(){
+	var box=document.getElementById("box");
+	var lis=document.getElementsByTagName("li");
+	var lis2=document.getElementById("list1").getElementsByTagName("li");
+	console.log(box);
+	console.log(lis);
+	console.log(lis2);
+	}
+	
+</script> -->
+<body>
+<div id="box">
+	元素
+</div>
+<ul id="list1">
+	<li id="li1" class=".li1">前端开发</li>
+	<li>服务器开发</li>
+	<li>UI设计1</li>
+</ul>
+<ul>
+	<li>JavaScript</li>
+	<li>HTML5</li>
+	<li>CSS3</li>
+</ul>
+<script type="text/javascript">
+	
+	var box=document.getElementById("box");
+	var lis=document.getElementsByTagName("li");
+	var lis2=document.getElementById("list1").getElementsByTagName("li");
+	console.log(box);
+	console.log(lis);
+	console.log(lis[0].id);
+	console.log(lis[0].className);
+	console.log(lis2.length);
+	console.log(lis2[1]);
+
+	
+</script>
+</body>
+</html>

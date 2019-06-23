@@ -12,9 +12,9 @@ else{
 console.log(getComputedStyle(ele,null)[styleName]);
 }
 ```
-（1）.offsetwidth属性返回值涵盖元素的width+border+padding。
-（2）.style.width属性返回值仅包含元素的width属性值。
-（3）.offsetwidth属性返回值是数字，不带单位，style.width返回值带有单位。
-（4）.style.width属性是可读写的。
-（5）.offsetwidth只读属性，不能赋值。
+（1）.offsetwidth属性返回值涵盖元素的width+border+padding。  
+（2）.style.width属性返回值仅包含元素的width属性值。  
+（3）.offsetwidth属性返回值是数字，不带单位，style.width返回值带有单位。  
+（4）.style.width属性是可读写的。  
+（5）.offsetwidth只读属性，不能赋值。  
 - getAttribute(属性名)只能获取写在行内的样式名的值，如id，name，style等

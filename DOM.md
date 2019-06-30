@@ -29,3 +29,5 @@
 - firstElementChild  -> 返回的是第一个元素节点（IE不兼容）
 - lastElementChild  -> 返回的是最后一个元素接节点（IE不兼容）
 - nextElementSibling/previousElementSibling  -> 返回后一个/前一个兄弟元素节点（IE不兼容）
+
++ document.documentElement 代表document文档

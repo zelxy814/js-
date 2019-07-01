@@ -6,7 +6,7 @@
 + 在html4中也有一个defer属性，该属性的兼容性更好一点，但是与async一样，可以让js脚本实现异步加载，同样只能用于加载外部js脚本。  
 **asyc与defer属性的不同点是**，async会让脚本在加载完可用时立即执行，而defer脚本则会在dom加载完毕后执行，defer脚本的执行会在window.onload之前，其他没有添加defer属性的script标签之后。    
 #### 动态创建<script>标签  
- ```
+```
  <script type="text/javascript">
   function  addScriptTag(src)(){
     var s = document.createElement('script');
@@ -19,13 +19,15 @@
     addScriptTag("/index.js")
   } 
 </script>
- ```
+```  
+
  ### CSS3动画
  + css中的几个属性：**animation**（动画）、**transition**（过渡）、**transform**（变形）
-  1. transform的属性值主要包括旋转(rotate)、扭曲(skew)、缩放(scale)和移动(translate)以及矩阵变形(matrix)
-    - transform:rotate(30deg),2D旋转，正值为顺时针旋转，负值为逆时针旋转，默认旋转基点是中心点，也可以通过transform-origin（X,Y）改变基点。
-    - transform:skew(30deg,10deg),以x轴为轴线逆时针旋转，以y轴为轴线顺时针旋转。基点默认为中心点。另外还有skewX、skewY，分别用来设置单一方向上的扭曲。可以通过transform-origin（X,Y）改变基点
-  
+  1. transform的属性值主要包括旋转(rotate)、扭曲(skew)、缩放(scale)和移动(translate)以及矩阵变形(matrix),transform-origin（X,Y）改变基点。
+    - transform:rotate(30deg),2D旋转，正值为顺时针旋转，负值为逆时针旋转，默认旋转基点是中心点。
+    - transform:skew(30deg,10deg),以x轴为轴线逆时针旋转，以y轴为轴线顺时针旋转。基点默认为中心点。另外还有skewX、skewY，分别用来设置单一方向上的扭曲。
+    - transform：scale（2,1.5），表示在水平方向（X轴）缩放2倍，在垂直方向（Y轴）缩放1.5倍。基本默认为中心点。scaleX(<number>) 、scaleY(<number>)用来分别设置单一方向上的缩放。
+    - transform：translate（100px，20px），表示在水平方向上移动100px；在垂直方向上移动20px，y轴向下为正。translateX、translateY值分别设置单一方向上的位移。
   
   
   
